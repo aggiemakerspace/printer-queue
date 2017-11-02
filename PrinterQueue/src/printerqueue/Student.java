@@ -94,4 +94,9 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
     
+    @Override
+    public String toString(){
+        return String.format("%s,%s,%s,%s,%s", firstName, lastName, studentID, phoneNumber, emailAddress);
+    }
+    
 }
