@@ -10,7 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -21,22 +25,19 @@ public class PrinterQueue extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        BorderPane root = new BorderPane();
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        Label topLabel = new Label("3-D Printer Queue");
+        HBox contentPane = new HBox();
+        VBox commandPane = new VBox();
+        
+        root.setTop(topLabel);
+        root.setCenter(contentPane);
+        root.setLeft(commandPane);
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Aggie Makerspace Print Queue");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
