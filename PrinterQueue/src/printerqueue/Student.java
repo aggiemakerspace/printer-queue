@@ -16,6 +16,14 @@ public class Student {
     private String emailAddress;
     private String phoneNumber;
 
+    public Student(String fName, String lName, String studentID, String email, String phone) {
+        this.firstName = fName;
+        this.lastName = lName;
+        this.studentID = studentID;
+        this.emailAddress = email;
+        this.phoneNumber = phone;
+    }
+    
     /**
      * @return the firstName
      */
