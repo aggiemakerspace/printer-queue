@@ -14,6 +14,10 @@ import java.util.ArrayList;
 public class PrinterQueue {
     private ArrayList<PrintJob> queue;
     
+    public PrinterQueue() {
+        queue = new ArrayList<PrintJob>();
+    }
+    
     public int getNumPrintJobs() {
         return queue.size();
     }
