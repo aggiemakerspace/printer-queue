@@ -74,7 +74,8 @@ public class PrinterQueueViewController extends Application {
 
         @Override
         public void handle(ActionEvent e) {
-            System.out.println("button pressed");
+            AddPrintJobTextInputDialog addJobDialog = new AddPrintJobTextInputDialog();
+            addJobDialog.showAndWait();
         }
     }
 }
