@@ -26,6 +26,7 @@ public class PrintJob {
     private PrintType type;
     private Date dueDate;
     private String comments;
+    private Student student;
     
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
@@ -105,6 +106,13 @@ public class PrintJob {
      */
     public String getComments() {
         return comments;
+    }
+    
+    /**
+     * @return the Student who requested this print
+     */
+    public Student getStudent() {
+        return student;
     }
     
     private Date incrementDateFiveDays(Date date){ 
