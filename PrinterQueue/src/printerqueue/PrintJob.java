@@ -30,6 +30,11 @@ public class PrintJob {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     public PrintJob(String stlPath, PrintType type, String dueDate, String comments) {
+        this(stlPath, type, dueDate);
+        this.comments = comments;
+    }
+    
+    public PrintJob(String stlPath, PrintType type, String dueDate) {
         Date formattedDueDate = new Date();
         try {
             formattedDueDate = dateFormat.parse(dueDate);
@@ -72,7 +77,6 @@ public class PrintJob {
             default:
                 this.dueDate = formattedDueDate;
         }
-        this.comments = comments;
     }
     
     /**
