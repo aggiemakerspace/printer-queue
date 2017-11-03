@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author CCannon
  */
-public class PrinterQueue extends Application {
+public class PrinterQueueViewController extends Application {
     
     @Override
     public void start(Stage primaryStage) {
