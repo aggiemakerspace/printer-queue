@@ -6,9 +6,12 @@
 package printerqueue;
 
 import java.io.File;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -22,6 +25,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javax.xml.transform.Result;
 
 /**
  *
@@ -33,12 +37,12 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
     private ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
     private Date dueDate;
-    
+
     //Add constructor
     //See https://stackoverflow.com/questions/31230228/get-multiple-results-from-custom-dialog-javafx
     public AddPrintJobTextInputDialog() {
         this.dueDate = new Date();
-        
+
         setTitle("Add Print Job");
         setHeaderText("Complete the following form to add your print job to the queue");
 
@@ -48,9 +52,14 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
         Label dueDateLabel = new Label("When is this print needed by?");
         Label studentLabel = new Label("Please select your name");
         Label commentsLabel = new Label("Enter any additional instructions for printing here");
-        
+
         TextField stlPathTextField = new TextField();
         ComboBox printTypeComboBox = new ComboBox();
+        printTypeComboBox.getItems().addAll(
+                "Assigned Class Project",
+                "Project for Student Group",
+                "Personal Project/For Funsies"
+        );
         DatePicker dueDatePicker = new DatePicker();
         dueDatePicker.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -60,8 +69,7 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
         });
         ComboBox studentComboBox = new ComboBox();
         TextArea commentsTextArea = new TextArea();
-        
-        
+
         Button stlPathBrowseButton = new Button("Browse");
         stlPathBrowseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -74,7 +82,7 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
             }
         });
         Button newStudentButton = new Button("Register new student");
-        
+
         printInfoPane.add(stlPathLabel, 0, 0);
         printInfoPane.add(printTypeLabel, 0, 1);
         printInfoPane.add(dueDateLabel, 0, 2);
@@ -87,11 +95,35 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
         printInfoPane.add(commentsTextArea, 1, 4);
         printInfoPane.add(stlPathBrowseButton, 2, 0);
         printInfoPane.add(newStudentButton, 2, 3);
-        
+
         getDialogPane().getButtonTypes().addAll(add, cancel);
         getDialogPane().setContent(printInfoPane);
+
+        setResultConverter((ButtonType button) -> {
+            if (button.equals(add)) {
+                PrintType type = PrintType.ASSIGNMENT;
+                switch (printTypeComboBox.getSelectionModel().getSelectedIndex()) {
+                    case 0:
+                        type = PrintType.ASSIGNMENT;
+                        break;
+                    case 1:
+                        type = PrintType.TEAM_PROJECT;
+                        break;
+                    case 2:
+                        type = PrintType.PERSONAL;
+                        break;
+                }
+
+                Instant instant = Instant.from(dueDatePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
+                Date date = Date.from(instant);
+
+                PrintJob newJob = new PrintJob(stlPathTextField.getText(), type, date, commentsTextArea.getText(), new Student("Test", "Test", "Test", "Test", "Test"));
+                return newJob;
+            }
+            return null;
+        });
     }
-    
+
     private void setDueDate(LocalDate selectedDate) {
         dueDate = Date.from(selectedDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }

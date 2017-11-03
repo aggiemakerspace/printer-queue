@@ -29,54 +29,22 @@ public class PrintJob {
     private Student student;
     
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-    public PrintJob(String stlPath, PrintType type, String dueDate, String comments) {
-        this(stlPath, type, dueDate);
+    
+    public PrintJob(String stlPath, PrintType type, Date dueDate, String comments, Student student) {
+        this(stlPath, type, dueDate, student);
         this.comments = comments;
     }
     
-    public PrintJob(String stlPath, PrintType type, String dueDate) {
-        Date formattedDueDate = new Date();
-        try {
-            formattedDueDate = dateFormat.parse(dueDate);
-        } catch (ParseException ex) {
-            System.err.println("Failed to convert due date " + dueDate);
-            TextInputDialog dialog = new TextInputDialog(dateFormat.format(new Date()));
-            dialog.setTitle("Date Input Error");
-            dialog.setHeaderText("Dates must be entered in the format MM/DD/YYYY");
-            dialog.setContentText("Please enter the due date:");
-            
-            Optional<String> result = dialog.showAndWait();
-            if(result.isPresent()) {
-                try {
-                    formattedDueDate = dateFormat.parse(result.get());
-                } catch (ParseException ex1) {
-                    System.err.println("Failed to convert due date " + dueDate);
-                    
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Date Input Error");
-                    alert.setHeaderText("Your due date has failed to parse");
-                    alert.setContentText("Due date will be set to 5 days from today");
-                    
-                    
-                    
-                    formattedDueDate = incrementDateFiveDays(new Date());
-                    
-                    Logger.getLogger(PrintJob.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-            }
-            
-            Logger.getLogger(PrintJob.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+    public PrintJob(String stlPath, PrintType type, Date dueDate, Student student) {
         this.stlPath = stlPath;
         this.type = type;
+        this.student = student;
         switch(type) {
             case PERSONAL:
                 this.dueDate = incrementDateFiveDays(new Date());
                 break;
             default:
-                this.dueDate = formattedDueDate;
+                this.dueDate = dueDate;
         }
     }
     
