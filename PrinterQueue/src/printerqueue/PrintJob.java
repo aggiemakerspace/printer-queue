@@ -87,24 +87,10 @@ public class PrintJob {
     }
 
     /**
-     * @param stlPath the stlPath to set
-     */
-    public void setStlPath(String stlPath) {
-        this.stlPath = stlPath;
-    }
-
-    /**
      * @return the type
      */
     public PrintType getType() {
         return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(PrintType type) {
-        this.type = type;
     }
 
     /**
@@ -115,24 +101,10 @@ public class PrintJob {
     }
 
     /**
-     * @param dueDate the dueDate to set
-     */
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    /**
      * @return the comments
      */
     public String getComments() {
         return comments;
-    }
-
-    /**
-     * @param comments the comments to set
-     */
-    public void setComments(String comments) {
-        this.comments = comments;
     }
     
     private Date incrementDateFiveDays(Date date){ 
