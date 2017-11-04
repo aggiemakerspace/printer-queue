@@ -26,6 +26,8 @@ DIAGRAM GOES HERE
 
 The PrintType enumeration contains a constant value representing the purpose of a PrintJob.
 
+PRINTTYPE DIAGRAM HERE
+
 Value | Comments
 ---------- | ------------------------------
 ASSIGNMENT | Assigned to PrintJobs related to an assigned class project with a set due date
@@ -38,6 +40,8 @@ PERSONAL | Assigned to PrintJobs for the personal use or enjoyment by an NCAT st
 
 The `Student` datatype holds information related to a single Makerspace user. The purpose of the `Student` datatype is to hold the basic information required to track student work and contact the student when the print is completed.
 
+STUDENT DIAGRAM HERE
+
 ##### Readonly Fields
 
 Type | Name | Comments
@@ -47,6 +51,12 @@ String | lastName | The last or family name of the Makerspace user
 String | studentID | The 9-digit student identification number, used as a key for users in the directory
 String | emailAddress | The preferred contact email address of the user for notifications regarding their PrintJobs
 String | phoneNumber | The preferred contact phone number of the user for notifications regarding their PrintJobs
+
+#### Public Methods
+
+Return Type | Name | Parameters | Comments
+----------- | ---------- | ---------- | ------------------------------
+String | toString | _none_ | Returns each of the fields as a series of comma-separated values (csv)
 
 #### PrintJob
 
