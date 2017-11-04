@@ -8,6 +8,10 @@ Version | Date | Prepared By | Reviewed By
 ---------- | ---------- | ------------------- | -------------------
 v0.1 | 2017-11-6 | Chris Cannon | Jonathan Reddix
 
+## Scope
+
+This specification is the ultimate source of information regarding the design and implementation of PrinterQueue. This document supersedes specifications issued before the DATE listed above and any specifications numbered before the VERSION listed above.
+
 ## Class Diagram
 
 Printer Queue shall be developed in accordance with the following class diagram. For implementation details of each class, see subsequent sections.
