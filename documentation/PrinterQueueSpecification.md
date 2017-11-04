@@ -80,6 +80,20 @@ Type | Name | Comments
 ---------- | ---------- | ------------------------------
 SimpleDateFormat | dateFormat | The SimpleDateFormat used to interpolate Date objects to and from the "MM/dd/yyyy" format
 
+##### Public Methods
+
+Return Type | Name | Parameters | Comments
+----------- | ---------- | ---------- | ------------------------------
+String | toString | _none_ | Returns each of the fields in the format shown below
+
+###### toString Format
+_stlPath, type, dueDate_
+_requestingStudent as a csv of student values_
+_comments_
+END
+
+It is important to include END as the final line of a PrintJob toString to protect against cases where comments include an unknown number of new line characters.
+
 #### PrinterQueue
 
 #### StudentDirectory
