@@ -5,7 +5,12 @@
  */
 package printerqueue;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -103,5 +108,51 @@ public class PrinterQueue {
         }
         
         return returnString;
+    }
+    
+    public void savePrinterQueue(){
+        try {
+            PrintWriter pw = new PrintWriter(new File(this.queueConfigFileName));
+            
+            for(PrintJob job: this.queue) {
+                pw.println(job.toString());
+            }
+            
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open Printer Queue Config File for writing");
+            Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void saveWaitingForPickup(){
+        try {
+            PrintWriter pw = new PrintWriter(new File(this.waitingForPickupConfigFileName));
+            
+            for(PrintJob job: this.waitingForPickup) {
+                pw.println(job.toString());
+            }
+            
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open Waiting For Pickup Config File for writing");
+            Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void saveCompleted(){
+        try {
+            PrintWriter pw = new PrintWriter(new File(this.completedConfigFileName));
+            
+            for(PrintJob job: this.completed) {
+                pw.println(job.toString());
+            }
+            
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open Completed Config File for writing");
+            Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
