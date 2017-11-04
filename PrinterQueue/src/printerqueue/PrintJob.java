@@ -26,7 +26,7 @@ public class PrintJob {
     private PrintType type;
     private Date dueDate;
     private String comments;
-    private Student student;
+    private Student requestingStudent;
     
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
@@ -38,7 +38,7 @@ public class PrintJob {
     public PrintJob(String stlPath, PrintType type, Date dueDate, Student student) {
         this.stlPath = stlPath;
         this.type = type;
-        this.student = student;
+        this.requestingStudent = student;
         switch(type) {
             case PERSONAL:
                 this.dueDate = incrementDateFiveDays(new Date());
@@ -80,7 +80,7 @@ public class PrintJob {
      * @return the Student who requested this print
      */
     public Student getStudent() {
-        return student;
+        return requestingStudent;
     }
     
     private Date incrementDateFiveDays(Date date){ 
