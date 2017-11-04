@@ -85,4 +85,23 @@ public class PrinterQueue {
     public PrintJob removeCompletedPrintJob(int index) {
         return completed.remove(index);
     }
+    
+    public String toString(){
+        String returnString = "q";
+        for(PrintJob job : queue) {
+            returnString += System.lineSeparator() + job.toString();
+        }
+        
+        returnString += System.lineSeparator() + "w";
+        for(PrintJob job: waitingForPickup) {
+            returnString += System.lineSeparator() + job.toString();
+        }
+        
+        returnString += System.lineSeparator() + "c";
+        for(PrintJob job: completed) {
+            returnString += System.lineSeparator() + job.toString();
+        }
+        
+        return returnString;
+    }
 }
