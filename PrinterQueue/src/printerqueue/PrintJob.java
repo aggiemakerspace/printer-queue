@@ -21,7 +21,7 @@ public class PrintJob {
     private String comments;
     private Student requestingStudent;
     
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
     public PrintJob(String stlPath, PrintType type, Date dueDate, String comments, Student student) {
         this(stlPath, type, dueDate, student);
@@ -34,7 +34,7 @@ public class PrintJob {
         this.requestingStudent = student;
         switch(type) {
             case PERSONAL:
-                this.dueDate = incrementDateFiveDays(new Date());
+                this.dueDate = getDueDateForPersonalProject();
                 break;
             default:
                 this.dueDate = dueDate;
@@ -76,7 +76,7 @@ public class PrintJob {
         return requestingStudent;
     }
     
-    private Date incrementDateFiveDays(Date date){ 
+    private Date getDueDateForPersonalProject(){ 
         GregorianCalendar cal = new GregorianCalendar();
         
         cal.setTime(new Date());
