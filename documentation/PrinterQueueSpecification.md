@@ -60,6 +60,26 @@ String | toString | _none_ | Returns each of the fields as a series of comma-sep
 
 #### PrintJob
 
+The `PrintJob` datatype holds information related to a single print to be made. The purpose of the `PrintJob` datatype is to hold all information required for a superuser to locate and print a .stl file and inform the requesting student when it is complete.
+
+PRINTJOB DIAGRAM HERE
+
+##### Readonly Fields
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+String | stlPath | The absolute path to the .stl file for this print on the computer
+PrintType | type | The PrintType of this print, used to determine priority with Class Assignments receiving the highest priority and personal projects receiving the lowest priority
+Date | dueDate | The date by which the student requires this print to be completed. For personal projects, this is set to 5 days from the request.
+String | comments | Any additional information that the requesting student would like to provide about this PrintJob
+Student | requestingStudent | The Makerspace user who is requesting this PrintJob
+
+##### Constants
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+SimpleDateFormat | dateFormat | The SimpleDateFormat used to interpolate Date objects to and from the "MM/dd/yyyy" format
+
 #### PrinterQueue
 
 #### StudentDirectory
