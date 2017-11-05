@@ -131,4 +131,15 @@ void | saveCompleted | _none_ | Saves the current data in `completed` to the fil
 void | loadCompleted | _none_ | Loads the data in the file specified in `completedConfigFileName` to `completed`
 String | toString | _none_ | Returns the toString for each PrintJob in `queue` separated by a new line character
 
+##### ArrayList Handling
+
+Each ArrayList should include the five standard public methods for handling ArrayLists:
+Return Type | Name | Parameters | Comments
+----------- | ---------- | ---------- | ------------------------------
+void | addWidget | widget: Widget | Adds the given Widget to the ArrayList
+void | setWidget | index: int, widget: Widget | Adds the given Widget to the ArrayList at the given index
+Widget | getWidget | index: int | Returns the Widget stored at the given index
+Widget | removeWidget | index: int | Removes the Widget stored at the given index and returns it
+int | getNumWidgets | _none_ | Returns the number of items in the ArrayList 
+
 #### StudentDirectory
