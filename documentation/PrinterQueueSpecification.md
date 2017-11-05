@@ -42,7 +42,7 @@ The `Student` datatype holds information related to a single Makerspace user. Th
 
 STUDENT DIAGRAM HERE
 
-##### Readonly Fields
+##### Readonly Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
@@ -56,7 +56,7 @@ String | phoneNumber | The preferred contact phone number of the user for notifi
 
 Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
-String | toString | _none_ | Returns each of the fields as a series of comma-separated values (csv)
+String | toString | _none_ | Returns each of the properties as a series of comma-separated values (csv)
 
 #### PrintJob
 
@@ -64,7 +64,7 @@ The `PrintJob` datatype holds information related to a single print to be made. 
 
 PRINTJOB DIAGRAM HERE
 
-##### Readonly Fields
+##### Readonly Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
@@ -84,7 +84,7 @@ SimpleDateFormat | dateFormat | The SimpleDateFormat used to interpolate Date ob
 
 Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
-String | toString | _none_ | Returns each of the fields in the format shown below
+String | toString | _none_ | Returns each of the properties of the PrintJob in the format shown below
 
 ###### toString Format
 _stlPath, type, dueDate_
@@ -98,5 +98,25 @@ END
 It is important to include END as the final line of a PrintJob toString to protect against cases where comments include an unknown number of new line characters.
 
 #### PrinterQueue
+
+The `PrinterQueue` datatype holds the PrintJobs processed by this program in three separate ArrayLists. The `PrinterQueue` will interact directly with the user interface to add, process, and complete PrintJobs.
+
+PRINTERQUEUE DIALOG HERE
+
+##### Readonly Properties
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+ArrayList<PrintJob> | queue | The PrintJobs that need to be printed
+ArrayList<PrintJob> | waitingForPickup | The PrintJobs that have been printed but not yet picked up
+ArrayList<PrintJob> | completed | The PrintJobs that have been printed and picked up
+
+##### Constants
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+String | queueConfigFileName | The name of the configuration file from which the queue is loaded when the application launches
+String | waitingForPickupConfigFileName | The name of the configuration file from which the waitingForPickup list is loaded when the application launches
+String | completedConfigFileName | The name of the configuration file from which the completed list is loaded when the application launches
 
 #### StudentDirectory
