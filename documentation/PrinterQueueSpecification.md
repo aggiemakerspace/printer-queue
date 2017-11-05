@@ -119,4 +119,16 @@ String | queueConfigFileName | The name of the configuration file from which the
 String | waitingForPickupConfigFileName | The name of the configuration file from which the waitingForPickup list is loaded when the application launches
 String | completedConfigFileName | The name of the configuration file from which the completed list is loaded when the application launches
 
+##### Public Methods
+
+Return Type | Name | Parameters | Comments
+----------- | ---------- | ---------- | ------------------------------
+void | savePrinterQueue | _none_ | Saves the current data in `queue` to the file specified in `queueConfigFileName`
+void | loadPrinterQueue | _none_ | Loads the data in the file specified in `queueConfigFileName` to `queue`
+void | saveWaitingForPickup | _none_ | Saves the current data in `waitingForPickup` to the file specified in `waitingForPickupConfigFileName`
+void | loadWaitingForPickup | _none_ | Loads the data in the file specified in `waitingForPickupConfigFileName` to `waitingForPickup`
+void | saveCompleted | _none_ | Saves the current data in `completed` to the file specified in `completedConfigFileName`
+void | loadCompleted | _none_ | Loads the data in the file specified in `completedConfigFileName` to `completed`
+String | toString | _none_ | Returns the toString for each PrintJob in `queue` separated by a new line character
+
 #### StudentDirectory
