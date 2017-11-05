@@ -146,7 +146,7 @@ int | getNumWidgets | _none_ | Returns the number of items in the ArrayList
 
 The `StudentDirectory` datatype uses a HashMap to store and access all `Student` objects that have been used by the program. This allows quick access to all Students for searching and creating new PrintJobs associated with them.
 
-STUDENT DIRECTORY IMAGE 
+STUDENT DIRECTORY IMAGE
 
 ##### ReadOnlyProperties
 
@@ -166,4 +166,8 @@ Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
 void | saveStudentDirectory | _none_ | Saves the current data in `directory` to the file specified in `configFileName`
 void | loadStudentDirectory | _none_ | Loads the data in the file specified in `configFileName` to `directory`
+boolean | containsStudent | _none_ | Returns true if the HashMap contains a `Student` with the given studentID `key`
+Student | getStudent | key: String | Returns the `Student` associated with the given studentID `key`
+void | putStudent | key: String, student: Student | Adds the given `Student` to the HashMap associated with the given studentID `key`
+Collection<Student> | getStudents | _none_ | Returns a Collection of all `Student`s in `directory`
 String | toString | _none_ | Returns the csv value of each Student in the directory separated by a new line character
