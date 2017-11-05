@@ -16,7 +16,7 @@ This specification is the ultimate source of information regarding the design an
 
 Printer Queue shall be developed in accordance with the following class diagram. For implementation details of each class, see subsequent sections.
 
-DIAGRAM GOES HERE
+![Application UML Diagram](https://imgur.com/4wmJ1ud.png)
 
 ## Development
 
