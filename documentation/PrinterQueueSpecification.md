@@ -140,6 +140,30 @@ void | addWidget | widget: Widget | Adds the given Widget to the ArrayList
 void | setWidget | index: int, widget: Widget | Adds the given Widget to the ArrayList at the given index
 Widget | getWidget | index: int | Returns the Widget stored at the given index
 Widget | removeWidget | index: int | Removes the Widget stored at the given index and returns it
-int | getNumWidgets | _none_ | Returns the number of items in the ArrayList 
+int | getNumWidgets | _none_ | Returns the number of items in the ArrayList
 
 #### StudentDirectory
+
+The `StudentDirectory` datatype uses a HashMap to store and access all `Student` objects that have been used by the program. This allows quick access to all Students for searching and creating new PrintJobs associated with them.
+
+STUDENT DIRECTORY IMAGE 
+
+##### ReadOnlyProperties
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+HashMap<String, Student> | directory | Holds each `Student` registered with the application, uses that `Student`'s studentID as the key
+
+##### Constants
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+String | configFileName | The name of the configuration file from which the `directory` is loaded when the application launches
+
+##### Public Methods
+
+Return Type | Name | Parameters | Comments
+----------- | ---------- | ---------- | ------------------------------
+void | saveStudentDirectory | _none_ | Saves the current data in `directory` to the file specified in `configFileName`
+void | loadStudentDirectory | _none_ | Loads the data in the file specified in `configFileName` to `directory`
+String | toString | _none_ | Returns the csv value of each Student in the directory separated by a new line character
