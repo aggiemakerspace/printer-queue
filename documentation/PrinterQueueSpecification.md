@@ -26,7 +26,7 @@ Printer Queue shall be developed in accordance with the following class diagram.
 
 The PrintType enumeration contains a constant value representing the purpose of a PrintJob.
 
-PRINTTYPE DIAGRAM HERE
+![PrintType Diagram](https://i.imgur.com/VcjzQxD.png)
 
 Value | Comments
 ---------- | ------------------------------
@@ -40,7 +40,7 @@ PERSONAL | Assigned to PrintJobs for the personal use or enjoyment by an NCAT st
 
 The `Student` datatype holds information related to a single Makerspace user. The purpose of the `Student` datatype is to hold the basic information required to track student work and contact the student when the print is completed.
 
-STUDENT DIAGRAM HERE
+![Student Class Diagram](https://i.imgur.com/iQm3EUP.png)
 
 ##### Readonly Properties
 
@@ -62,7 +62,7 @@ String | toString | _none_ | Returns each of the properties as a series of comma
 
 The `PrintJob` datatype holds information related to a single print to be made. The purpose of the `PrintJob` datatype is to hold all information required for a superuser to locate and print a .stl file and inform the requesting student when it is complete.
 
-PRINTJOB DIAGRAM HERE
+![PrintJob Diagram](https://i.imgur.com/hstLiMA.png)
 
 ##### Readonly Properties
 
@@ -101,7 +101,7 @@ It is important to include END as the final line of a PrintJob toString to prote
 
 The `PrinterQueue` datatype holds the PrintJobs processed by this program in three separate ArrayLists. The `PrinterQueue` will interact directly with the user interface to add, process, and complete PrintJobs.
 
-PRINTERQUEUE DIALOG HERE
+![PrinterQueue Diagram](https://i.imgur.com/thu4yeL.png)
 
 ##### Readonly Properties
 
@@ -146,7 +146,7 @@ int | getNumWidgets | _none_ | Returns the number of items in the ArrayList
 
 The `StudentDirectory` datatype uses a HashMap to store and access all `Student` objects that have been used by the program. This allows quick access to all Students for searching and creating new PrintJobs associated with them.
 
-STUDENT DIRECTORY IMAGE
+![StudentDirectory Diagram](https://i.imgur.com/Scwtxpa.png)
 
 ##### ReadOnlyProperties
 
