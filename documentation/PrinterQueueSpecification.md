@@ -88,11 +88,8 @@ String | toString | _none_ | Returns each of the properties of the PrintJob in t
 
 ###### toString Format
 > _stlPath, type, dueDate_
-
 > _requestingStudent as a csv of student values_
-
 > _comments_
-
 > END
 
 It is important to include END as the final line of a PrintJob toString to protect against cases where comments include an unknown number of new line characters.
