@@ -172,7 +172,17 @@ String | toString | _none_ | Returns the csv value of each Student in the direct
 
 ## Interface
 
-### PrintQueueViewController
+### PrinterQueueViewController
+
+The `PrinterQueueViewController` is the main launch screen of the application. The `PrinterQueueViewController` should display the current print queue in a ListView as well as the waiting for pickup queue in another ListView. It should also include controls to add print jobs, view print jobs, and exit the application.
+
+Name | UI Element | Description
+--------------- | --------------- | ------------------------------
+queueListView  | ListView |  
+waitingForPickupListView  | ListView |  
+addPrintJobButton  | Button |  
+viewQueuePrintJobButton  | Button |  
+viewWaitingForPickupPrintJobButton  | Button |  
 
 ### PrintJobViewController
 

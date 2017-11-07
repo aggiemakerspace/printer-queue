@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package printerqueue;
+package printerqueueviewcontroller;
 
 import java.io.File;
 import java.time.Instant;
@@ -26,6 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javax.xml.transform.Result;
+import printerqueue.PrintJob;
+import printerqueue.PrintType;
+import printerqueue.Student;
 
 /**
  *
