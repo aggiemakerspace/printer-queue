@@ -18,11 +18,9 @@ Printer Queue shall be developed in accordance with the following class diagram.
 
 ![Application UML Diagram](https://imgur.com/4wmJ1ud.png)
 
-## Development
+## Enumerations
 
-### Enumerations
-
-#### PrintType
+### PrintType
 
 The PrintType enumeration contains a constant value representing the purpose of a PrintJob.
 
@@ -34,15 +32,15 @@ ASSIGNMENT | Assigned to PrintJobs related to an assigned class project with a s
 TEAM_PROJECT | Assigned to PrintJobs related to a project overseen by a campus organization of College of Engineering competitive team (ie SAE Baja, AutoDrive)
 PERSONAL | Assigned to PrintJobs for the personal use or enjoyment by an NCAT student or group of students
 
-### Data Types
+## Data Types
 
-#### Student
+### Student
 
 The `Student` datatype holds information related to a single Makerspace user. The purpose of the `Student` datatype is to hold the basic information required to track student work and contact the student when the print is completed.
 
 ![Student Class Diagram](https://i.imgur.com/iQm3EUP.png)
 
-##### Readonly Properties
+#### Readonly Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
@@ -58,13 +56,13 @@ Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
 String | toString | _none_ | Returns each of the properties as a series of comma-separated values (csv)
 
-#### PrintJob
+### PrintJob
 
 The `PrintJob` datatype holds information related to a single print to be made. The purpose of the `PrintJob` datatype is to hold all information required for a superuser to locate and print a .stl file and inform the requesting student when it is complete.
 
 ![PrintJob Diagram](https://i.imgur.com/hstLiMA.png)
 
-##### Readonly Properties
+#### Readonly Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
@@ -74,19 +72,19 @@ Date | dueDate | The date by which the student requires this print to be complet
 String | comments | Any additional information that the requesting student would like to provide about this PrintJob
 Student | requestingStudent | The Makerspace user who is requesting this PrintJob
 
-##### Constants
+#### Constants
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
 SimpleDateFormat | dateFormat | The SimpleDateFormat used to interpolate Date objects to and from the "MM/dd/yyyy" format
 
-##### Public Methods
+#### Public Methods
 
 Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
 String | toString | _none_ | Returns each of the properties of the PrintJob in the format shown below
 
-###### toString Format
+##### toString Format
 > _stlPath, type, dueDate_
 >
 > _requestingStudent as a csv of student values_
@@ -97,13 +95,13 @@ String | toString | _none_ | Returns each of the properties of the PrintJob in t
 
 It is important to include END as the final line of a PrintJob toString to protect against cases where comments include an unknown number of new line characters.
 
-#### PrinterQueue
+### PrinterQueue
 
 The `PrinterQueue` datatype holds the PrintJobs processed by this program in three separate ArrayLists. The `PrinterQueue` will interact directly with the user interface to add, process, and complete PrintJobs.
 
 ![PrinterQueue Diagram](https://i.imgur.com/thu4yeL.png)
 
-##### Readonly Properties
+#### Readonly Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
@@ -111,7 +109,7 @@ ArrayList<PrintJob> | queue | The PrintJobs that need to be printed
 ArrayList<PrintJob> | waitingForPickup | The PrintJobs that have been printed but not yet picked up
 ArrayList<PrintJob> | completed | The PrintJobs that have been printed and picked up
 
-##### Constants
+#### Constants
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
@@ -119,7 +117,7 @@ String | queueConfigFileName | The name of the configuration file from which the
 String | waitingForPickupConfigFileName | The name of the configuration file from which the waitingForPickup list is loaded when the application launches
 String | completedConfigFileName | The name of the configuration file from which the completed list is loaded when the application launches
 
-##### Public Methods
+#### Public Methods
 
 Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
@@ -131,7 +129,7 @@ void | saveCompleted | _none_ | Saves the current data in `completed` to the fil
 void | loadCompleted | _none_ | Loads the data in the file specified in `completedConfigFileName` to `completed`
 String | toString | _none_ | Returns the toString for each PrintJob in `queue` separated by a new line character
 
-##### ArrayList Handling
+#### ArrayList Handling
 
 Each ArrayList should include the five standard public methods for handling ArrayLists:
 Return Type | Name | Parameters | Comments
@@ -142,25 +140,25 @@ Widget | getWidget | index: int | Returns the Widget stored at the given index
 Widget | removeWidget | index: int | Removes the Widget stored at the given index and returns it
 int | getNumWidgets | _none_ | Returns the number of items in the ArrayList
 
-#### StudentDirectory
+### StudentDirectory
 
 The `StudentDirectory` datatype uses a HashMap to store and access all `Student` objects that have been used by the program. This allows quick access to all Students for searching and creating new PrintJobs associated with them.
 
 ![StudentDirectory Diagram](https://i.imgur.com/Scwtxpa.png)
 
-##### ReadOnlyProperties
+#### ReadOnlyProperties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
 HashMap<String, Student> | directory | Holds each `Student` registered with the application, uses that `Student`'s studentID as the key
 
-##### Constants
+#### Constants
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
 String | configFileName | The name of the configuration file from which the `directory` is loaded when the application launches
 
-##### Public Methods
+#### Public Methods
 
 Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
@@ -171,3 +169,13 @@ Student | getStudent | key: String | Returns the `Student` associated with the g
 void | putStudent | key: String, student: Student | Adds the given `Student` to the HashMap associated with the given studentID `key`
 Collection<Student> | getStudents | _none_ | Returns a Collection of all `Student`s in `directory`
 String | toString | _none_ | Returns the csv value of each Student in the directory separated by a new line character
+
+## Interface
+
+### PrintQueueViewController
+
+### PrintJobViewController
+
+### AddPrintJobTextInputDialog
+
+### AddPrintJobInputErrorAlertDialog
