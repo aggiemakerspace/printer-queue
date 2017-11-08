@@ -152,6 +152,7 @@ String | toString | _none_ | Returns the toString for each PrintJob in `queue` s
 #### ArrayList Handling
 
 Each ArrayList should include the five standard public methods for handling ArrayLists:
+
 Return Type | Name | Parameters | Comments
 ----------- | ---------- | ---------- | ------------------------------
 void | addWidget | widget: Widget | Adds the given Widget to the ArrayList
