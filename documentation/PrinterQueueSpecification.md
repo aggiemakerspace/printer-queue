@@ -16,7 +16,7 @@ This specification is the ultimate source of information regarding the design an
 
 Printer Queue shall be developed in accordance with the following class diagram. For implementation details of each class, see subsequent sections.
 
-![Application UML Diagram](https://imgur.com/4wmJ1ud.png)
+![Application UML Diagram](https://imgur.com/YHlCBo0.png)
 
 ## Enumerations
 
@@ -24,7 +24,7 @@ Printer Queue shall be developed in accordance with the following class diagram.
 
 The PrintType enumeration contains a constant value representing the purpose of a PrintJob.
 
-![PrintType Diagram](https://i.imgur.com/VcjzQxD.png)
+![PrintType Diagram](https://imgur.com/cCZHVyM.png)
 
 Value | Comments
 ---------- | ------------------------------
@@ -36,7 +36,7 @@ PERSONAL | Assigned to PrintJobs for the personal use or enjoyment by an NCAT st
 
 The PrintStatus enumeration contains a constant value representing the current status of a PrintJob
 
-UML DIAGRAM HERE
+![PrintStatus Diagram](https://i.imgur.com/iSNyfEV.png)
 
 Value | Comments
 ---------- | ------------------------------
@@ -50,7 +50,7 @@ COMPLETED | The PrintJob is completed and picked up.
 
 The `Student` datatype holds information related to a single Makerspace user. The purpose of the `Student` datatype is to hold the basic information required to track student work and contact the student when the print is completed.
 
-![Student Class Diagram](https://i.imgur.com/iQm3EUP.png)
+![Student Class Diagram](https://i.imgur.com/oC6xmw7.png)
 
 #### Readonly Properties
 
@@ -72,7 +72,7 @@ String | toString | _none_ | Returns each of the properties as a series of comma
 
 The `PrintJob` datatype holds information related to a single print to be made. The purpose of the `PrintJob` datatype is to hold all information required for a superuser to locate and print a .stl file and inform the requesting student when it is complete.
 
-![PrintJob Diagram](https://i.imgur.com/hstLiMA.png)
+![PrintJob Diagram](https://i.imgur.com/YvL1kH8.png)
 
 #### Readonly Properties
 
@@ -118,7 +118,7 @@ It is important to include END as the final line of a PrintJob toString to prote
 
 The `PrinterQueue` datatype holds the PrintJobs processed by this program in three separate ArrayLists. The `PrinterQueue` will interact directly with the user interface to add, process, and complete PrintJobs.
 
-![PrinterQueue Diagram](https://i.imgur.com/thu4yeL.png)
+![PrinterQueue Diagram](https://i.imgur.com/bNwn4OV.png)
 
 #### Properties
 
@@ -164,7 +164,7 @@ int | getNumWidgets | _none_ | Returns the number of items in the ArrayList
 
 The `StudentDirectory` datatype uses a HashMap to store and access all `Student` objects that have been used by the program. This allows quick access to all Students for searching and creating new PrintJobs associated with them.
 
-![StudentDirectory Diagram](https://i.imgur.com/Scwtxpa.png)
+![StudentDirectory Diagram](https://i.imgur.com/NeTi7pe.png)
 
 #### ReadOnlyProperties
 
