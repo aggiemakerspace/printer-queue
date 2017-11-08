@@ -189,6 +189,10 @@ waitingForPickupListView  | ListView | Displays the contents of the queue waitin
 addPrintJobButton | Button | Launches the AddPrintJobTextInputDialog
 viewQueuePrintJobButton | Button | Launches PrintJobViewController for the given job waiting to print
 viewWaitingForPickupPrintJobButton | Button | Launches PrintJobViewController for the given job waiting to be picked up
+printJobCompletedButton  | Button | Moves the highlighted PrintJob in the queue to the waitingForPickupQueue
+printJobPickedUpButton  | Button | Moves the highlighted PrintJob in the waitingForPickupQueue to the completedQueue
+exitButton | Button | Saves the queue and exits the program
+undoButton | Button | Reverses the last queue move operation
 
 ### PrintJobViewController
 
