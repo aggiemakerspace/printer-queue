@@ -247,3 +247,4 @@ PrintJob | printJob | The PrintJob displayed in this view.
 The `AddPrintJobTextInputDialog` is a custom JavaFX dialog that extends TextInputDialog. It should contain an input for each property of PrintJob except PrintComments. PrintStatus should be set to READY_TO_PRINT. Additionally, each input should be checked for proper formatting before being submitted. If there is an error with input, the user should be presented with an `AddPrintJobInputErrorAlertDialog` and prompted to fix their error and try again.
 
 ### AddPrintJobInputErrorAlertDialog
+The `AddPrintJobErrorAlertDialog` should receive information from the `AddPrintJobTextInputDialog` about which input is incorrect. It should alert the user to change their input and advise them of proper formatting.
