@@ -18,14 +18,15 @@ public class PrintJob {
     private String stlPath;
     private PrintType type;
     private Date dueDate;
-    private String comments;
+    private String requestComments;
     private Student requestingStudent;
+    private String printComments;
     
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
     public PrintJob(String stlPath, PrintType type, Date dueDate, String comments, Student student) {
         this(stlPath, type, dueDate, student);
-        this.comments = comments;
+        this.requestComments = comments;
     }
     
     public PrintJob(String stlPath, PrintType type, Date dueDate, Student student) {
@@ -66,7 +67,7 @@ public class PrintJob {
      * @return the comments
      */
     public String getComments() {
-        return comments;
+        return requestComments;
     }
     
     /**
@@ -83,6 +84,20 @@ public class PrintJob {
         cal.add(Calendar.DATE, 5);
         
         return cal.getTime();
+    }
+
+    /**
+     * @return the printComments
+     */
+    public String getPrintComments() {
+        return printComments;
+    }
+
+    /**
+     * @param printComments the printComments to set
+     */
+    public void setPrintComments(String printComments) {
+        this.printComments = printComments;
     }
     
 }

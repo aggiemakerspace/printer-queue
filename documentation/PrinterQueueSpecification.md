@@ -72,7 +72,7 @@ Date | dueDate | The date by which the student requires this print to be complet
 String | requestComments | Any additional information that the requesting student would like to provide about this PrintJob
 Student | requestingStudent | The Makerspace user who is requesting this PrintJob
 
-#### Properities
+#### Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
