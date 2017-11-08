@@ -77,6 +77,7 @@ Student | requestingStudent | The Makerspace user who is requesting this PrintJo
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
 String | printComments | Comments from the user running the printer regarding the outcome or result of the print.
+PrintStatus  |  status | Current status of the print.
 
 #### Constants
 
@@ -107,13 +108,14 @@ The `PrinterQueue` datatype holds the PrintJobs processed by this program in thr
 
 ![PrinterQueue Diagram](https://i.imgur.com/thu4yeL.png)
 
-#### Readonly Properties
+#### Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
 ArrayList<PrintJob> | queue | The PrintJobs that need to be printed
 ArrayList<PrintJob> | waitingForPickup | The PrintJobs that have been printed but not yet picked up
 ArrayList<PrintJob> | completed | The PrintJobs that have been printed and picked up
+PrintJob  | lastPrintJobMoved | The PrintJob last moved between queues
 
 #### Constants
 
