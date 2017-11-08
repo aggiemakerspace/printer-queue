@@ -69,8 +69,14 @@ Type | Name | Comments
 String | stlPath | The absolute path to the .stl file for this print on the computer
 PrintType | type | The PrintType of this print, used to determine priority with Class Assignments receiving the highest priority and personal projects receiving the lowest priority
 Date | dueDate | The date by which the student requires this print to be completed. For personal projects, this is set to 5 days from the request.
-String | comments | Any additional information that the requesting student would like to provide about this PrintJob
+String | requestComments | Any additional information that the requesting student would like to provide about this PrintJob
 Student | requestingStudent | The Makerspace user who is requesting this PrintJob
+
+#### Properities
+
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+String | printComments | Comments from the user running the printer regarding the outcome or result of the print.
 
 #### Constants
 
