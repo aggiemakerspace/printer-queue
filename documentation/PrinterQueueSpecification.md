@@ -184,11 +184,11 @@ The `PrinterQueueViewController` is the main launch screen of the application. T
 
 Name | UI Element | Description
 --------------- | --------------- | ------------------------------
-queueListView  | ListView |  
-waitingForPickupListView  | ListView |  
-addPrintJobButton  | Button |  
-viewQueuePrintJobButton  | Button |  
-viewWaitingForPickupPrintJobButton  | Button |  
+queueListView  | ListView |  Displays the contents of the queue waiting to be printed
+waitingForPickupListView  | ListView | Displays the contents of the queue waiting to be picked up
+addPrintJobButton | Button | Launches the AddPrintJobTextInputDialog
+viewQueuePrintJobButton | Button | Launches PrintJobViewController for the given job waiting to print
+viewWaitingForPickupPrintJobButton | Button | Launches PrintJobViewController for the given job waiting to be picked up
 
 ### PrintJobViewController
 
