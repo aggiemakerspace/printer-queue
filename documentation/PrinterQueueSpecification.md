@@ -234,6 +234,13 @@ requestingStudentPhoneLabel  | Label | self-explanatory
 requestingStudentPhoneTextField  | TextField | self-explanatory
 printCommentsLabel  | Label | self-explanatory
 printCommentsTextArea  | TextArea | self-explanatory
+savePrintCommentsButton | Button | Updates the information saved as printComments
+transitionButton  | Button | Moves the PrintJob to the next status based on its current PrintStatus.
+
+#### Fields
+Type | Name | Comments
+---------- | ---------- | ------------------------------
+PrintJob | printJob | The PrintJob displayed in this view.
 
 ### AddPrintJobTextInputDialog
 
