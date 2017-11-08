@@ -210,6 +210,31 @@ undoButton | Button | Reverses the last queue move operation
 
 ### PrintJobViewController
 
+The `PrintJobViewController` is the screen that displays details regarding a single PrintJob. Immutable properties should be displayed in nodes that cannot be edited, and mutable properties should be displayed in an editable fashion and include submission buttons for new values.
+
+Name | UI Element | Description
+--------------- | --------------- | ------------------------------
+stlPathLabel  | Label | self-explanatory
+stlPathTextField  | TextField | self-explanatory
+statusLabel  | Label | self-explanatory
+statusTextField  | TextField | self-explanatory
+typeLabel  | Label | self-explanatory
+typeTextField  | TextField | self-explanatory
+dueDateLabel  | Label | self-explanatory
+dueDateTextField  | TextField | self-explanatory
+requestCommentsLabel  | Label | self-explanatory
+requestCommentsTextArea  | TextArea | self-explanatory
+requestingStudentNameLabel  | Label | self-explanatory
+requestingStudentNameTextField  | TextField | self-explanatory
+requestingStudentIDLabel  | Label | self-explanatory
+requestingStudentIDTextField  | TextField | self-explanatory
+requestingStudentEmailLabel  | Label | self-explanatory
+requestingStudentEmailTextField  | TextField | self-explanatory
+requestingStudentPhoneLabel  | Label | self-explanatory
+requestingStudentPhoneTextField  | TextField | self-explanatory
+printCommentsLabel  | Label | self-explanatory
+printCommentsTextArea  | TextArea | self-explanatory
+
 ### AddPrintJobTextInputDialog
 
 ### AddPrintJobInputErrorAlertDialog
