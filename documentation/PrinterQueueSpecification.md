@@ -32,6 +32,18 @@ ASSIGNMENT | Assigned to PrintJobs related to an assigned class project with a s
 TEAM_PROJECT | Assigned to PrintJobs related to a project overseen by a campus organization of College of Engineering competitive team (ie SAE Baja, AutoDrive)
 PERSONAL | Assigned to PrintJobs for the personal use or enjoyment by an NCAT student or group of students
 
+### PrintStatus
+
+The PrintStatus enumeration contains a constant value representing the current status of a PrintJob
+
+UML DIAGRAM HERE
+
+Value | Comments
+---------- | ------------------------------
+READY_TO_PRINT | The PrintJob is ready to be printed.
+READY_TO_PICKUP | The PrintJob is printed and ready to be picked up.
+COMPLETED | The PrintJob is completed and picked up.
+
 ## Data Types
 
 ### Student
