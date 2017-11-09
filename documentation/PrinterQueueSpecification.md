@@ -104,7 +104,7 @@ Return Type | Name | Parameters | Comments
 String | toString | _none_ | Returns each of the properties of the PrintJob in the format shown below
 
 ##### toString Format
-> _stlPath, type, dueDate_
+> _stlPath, type, dueDate, status_
 >
 > _requestingStudent as a csv of student values_
 >
