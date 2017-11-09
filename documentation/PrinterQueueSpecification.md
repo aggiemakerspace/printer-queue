@@ -173,7 +173,7 @@ The `StudentDirectory` datatype uses a HashMap to store and access all `Student`
 
 ![StudentDirectory Diagram](https://i.imgur.com/NeTi7pe.png)
 
-#### ReadOnlyProperties
+#### Properties
 
 Type | Name | Comments
 ---------- | ---------- | ------------------------------
