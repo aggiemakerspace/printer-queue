@@ -14,7 +14,7 @@ import java.util.GregorianCalendar;
  *
  * @author CCannon
  */
-public class PrintJob {
+public class PrintJob implements Comparable<PrintJob>{
     private String stlPath;
     private PrintType type;
     private Date dueDate;
@@ -120,6 +120,14 @@ public class PrintJob {
         cal.add(Calendar.DATE, 5);
         
         return cal.getTime();
+    }
+
+    @Override
+    public int compareTo(PrintJob o) {
+        if(this.dueDate.equals(o.dueDate)) {
+            return this.status.compareTo(o.status);
+        }
+        return dueDate.compareTo(dueDate);
     }
 
 }
