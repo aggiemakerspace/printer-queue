@@ -108,7 +108,11 @@ String | toString | _none_ | Returns each of the properties of the PrintJob in t
 >
 > _requestingStudent as a csv of student values_
 >
-> _comments_
+> _requestComments_
+>
+> BREAK
+>
+> _printComments_
 >
 > END
 
