@@ -58,6 +58,10 @@ public class PrinterQueue {
         return queue.remove(index);
     }
     
+    public ArrayList<PrintJob> getPrintQueue() {
+        return queue;
+    }
+    
     public int getNumPrintJobsWaitingForPickup() {
         return waitingForPickup.size();
     }

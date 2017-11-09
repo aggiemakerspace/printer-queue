@@ -8,6 +8,7 @@ package printerqueueviewcontroller;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -29,15 +30,20 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import printerqueue.PrintJob;
+import printerqueue.PrinterQueue;
 
 /**
  *
  * @author CCannon
  */
 public class PrinterQueueViewController extends Application {
-
+    private PrinterQueue queue;
+    
     @Override
     public void start(Stage primaryStage) {
+        queue = new PrinterQueue();
+        
         QueueButtonEventHandler buttonHandler = new QueueButtonEventHandler();
         BorderPane root = new BorderPane();
 
@@ -46,6 +52,7 @@ public class PrinterQueueViewController extends Application {
         VBox commandPane = new VBox();
 
         ListView queueListView = new ListView();
+        queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
         contentPane.getChildren().add(queueListView);
 
         Button addJobButton = new Button("Add Print Job");
@@ -75,7 +82,11 @@ public class PrinterQueueViewController extends Application {
         @Override
         public void handle(ActionEvent e) {
             AddPrintJobTextInputDialog addJobDialog = new AddPrintJobTextInputDialog();
-            addJobDialog.showAndWait();
+            Optional<PrintJob> result = addJobDialog.showAndWait();
+            
+            if(result.isPresent()){
+                queue.addPrintJob(result.get());
+            }
         }
     }
 }
