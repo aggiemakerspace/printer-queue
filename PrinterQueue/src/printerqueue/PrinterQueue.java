@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -156,6 +157,29 @@ public class PrinterQueue {
             Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void loadPrinterQueue() {
+        try {
+            Scanner reader = new Scanner(new File(queueConfigFileName));
+            while(reader.hasNext()){
+                String[] jobLine = reader.nextLine().split(",");
+                String[] studentLine = reader.nextLine().split(",");
+                
+                String requestComments = "";
+                boolean moreComments = true;
+                while(moreComments) {
+                    String nextLine = reader.nextLine();
+                    if(nextLine.trim().equals("BREAK"))
+                        moreComments = false;
+                    else
+                        requestComments += nextLine;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open Printer Queue Config File for reading");
+            Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
