@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,6 +37,23 @@ public class StudentDirectory {
             }
         } catch (FileNotFoundException ex) {
             System.err.println("Unable to open " + configFileName + " for writing.");
+            Logger.getLogger(StudentDirectory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void loadStudentDirectory() {
+        try {
+            Scanner reader = new Scanner(new File(configFileName));
+            while(reader.hasNext()) {
+                String[] studentString = reader.nextLine().split(",");
+                
+                if(!directory.containsKey(studentString[2].trim())){
+                    Student newStudent = new Student(studentString[0].trim(), studentString[1].trim(), studentString[2].trim(), studentString[3].trim(), studentString[4].trim());
+                    directory.put(newStudent.getStudentID(), newStudent);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open " + configFileName + " for reading.");
             Logger.getLogger(StudentDirectory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
