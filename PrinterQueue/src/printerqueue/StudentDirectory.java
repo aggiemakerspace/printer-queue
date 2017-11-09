@@ -30,11 +30,9 @@ public class StudentDirectory {
         try {
             PrintWriter writer = new PrintWriter(new File(configFileName));
             
-            Collection<Student> outputDir = directory.values();
+            writer.print(this.toString());
             
-            for(Student student : outputDir) {
-                writer.println(student.toString());
-            }
+            writer.close();
         } catch (FileNotFoundException ex) {
             System.err.println("Unable to open " + configFileName + " for writing.");
             Logger.getLogger(StudentDirectory.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,5 +54,33 @@ public class StudentDirectory {
             System.err.println("Unable to open " + configFileName + " for reading.");
             Logger.getLogger(StudentDirectory.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public boolean containsStudent(String studentID) {
+        return directory.containsKey(studentID);
+    }
+    
+    public Student getStudent(String studentID) {
+        return directory.get(studentID);
+    }
+    
+    public void putStudent(String studentID, Student student) {
+        directory.put(studentID, student);
+    }
+    
+    public Collection<Student> getStudents() {
+        return directory.values();
+    }
+    
+    public String toString() {
+        Collection<Student> outputDir = directory.values();
+        
+        String returnString = "";
+        
+        for(Student student : outputDir) {
+            returnString += student.toString() + System.lineSeparator();
+        }
+        
+        return returnString;
     }
 }
