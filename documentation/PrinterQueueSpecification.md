@@ -72,6 +72,8 @@ String | toString | _none_ | Returns each of the properties as a series of comma
 
 The `PrintJob` datatype holds information related to a single print to be made. The purpose of the `PrintJob` datatype is to hold all information required for a superuser to locate and print a .stl file and inform the requesting student when it is complete.
 
+`PrintJob` should implement Comparable to sort based off of the due date and print status.
+
 ![PrintJob Diagram](https://i.imgur.com/YvL1kH8.png)
 
 #### Readonly Properties
