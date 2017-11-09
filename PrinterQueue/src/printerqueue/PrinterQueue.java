@@ -21,6 +21,8 @@ public class PrinterQueue {
     private ArrayList<PrintJob> waitingForPickup;
     private ArrayList<PrintJob> completed;
     
+    private PrintJob lastPrintJobMoved;
+    
     private final String queueConfigFileName = "queueConfig.txt";
     private final String waitingForPickupConfigFileName = "waitingForPickupConfig.txt";
     private final String completedConfigFileName = "completedConfig.txt";
@@ -154,5 +156,19 @@ public class PrinterQueue {
             Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    /**
+     * @return the lastPrintJobMoved
+     */
+    public PrintJob getLastPrintJobMoved() {
+        return lastPrintJobMoved;
+    }
+
+    /**
+     * @param lastPrintJobMoved the lastPrintJobMoved to set
+     */
+    public void setLastPrintJobMoved(PrintJob lastPrintJobMoved) {
+        this.lastPrintJobMoved = lastPrintJobMoved;
     }
 }

@@ -79,15 +79,6 @@ public class PrintJob {
         return requestingStudent;
     }
     
-    private Date getDueDateForPersonalProject(){ 
-        GregorianCalendar cal = new GregorianCalendar();
-        
-        cal.setTime(new Date());
-        cal.add(Calendar.DATE, 5);
-        
-        return cal.getTime();
-    }
-
     /**
      * @return the printComments
      */
@@ -122,4 +113,13 @@ public class PrintJob {
         return returnString;
     }
     
+    private Date getDueDateForPersonalProject(){ 
+        GregorianCalendar cal = new GregorianCalendar();
+        
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, 5);
+        
+        return cal.getTime();
+    }
+
 }
