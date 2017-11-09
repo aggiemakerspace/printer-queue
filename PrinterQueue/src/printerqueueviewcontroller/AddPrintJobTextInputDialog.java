@@ -87,6 +87,18 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
         });
         Button newStudentButton = new Button("Register new student");
 
+        newStudentButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AddStudentTextInputDialog addStudentDialog = new AddStudentTextInputDialog();
+                Optional<Student> result = addStudentDialog.showAndWait();
+
+                if(result.isPresent()) {
+                    studentComboBox.getItems().add(result.get());
+                }
+            }
+        });
+        
         printInfoPane.add(stlPathLabel, 0, 0);
         printInfoPane.add(printTypeLabel, 0, 1);
         printInfoPane.add(dueDateLabel, 0, 2);
@@ -120,8 +132,9 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
 
                 Instant instant = Instant.from(dueDatePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
                 Date date = Date.from(instant);
-
-                PrintJob newJob = new PrintJob(stlPathTextField.getText(), type, date, PrintStatus.READY_TO_PRINT, commentsTextArea.getText(), new Student("Test", "Test", "Test", "Test", "Test"));
+                
+                
+                PrintJob newJob = new PrintJob(stlPathTextField.getText(), type, date, PrintStatus.READY_TO_PRINT, commentsTextArea.getText(), (Student) studentComboBox.getSelectionModel().getSelectedItem());
                 return newJob;
             }
             return null;
@@ -131,4 +144,5 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
     private void setDueDate(LocalDate selectedDate) {
         dueDate = Date.from(selectedDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
+   
 }

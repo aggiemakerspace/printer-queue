@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import printerqueue.PrintJob;
 import printerqueue.PrinterQueue;
+import printerqueue.StudentDirectory;
 
 /**
  *
@@ -39,12 +40,13 @@ import printerqueue.PrinterQueue;
  */
 public class PrinterQueueViewController extends Application {
     private PrinterQueue queue;
+    private StudentDirectory directory;
     
     @Override
     public void start(Stage primaryStage) {
         queue = new PrinterQueue();
+        directory = new StudentDirectory();
         
-        QueueButtonEventHandler buttonHandler = new QueueButtonEventHandler();
         BorderPane root = new BorderPane();
 
         Label topLabel = new Label("3-D Printer Queue");
@@ -56,7 +58,21 @@ public class PrinterQueueViewController extends Application {
         contentPane.getChildren().add(queueListView);
 
         Button addJobButton = new Button("Add Print Job");
-        addJobButton.setOnAction(buttonHandler);
+        addJobButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                AddPrintJobTextInputDialog addJobDialog = new AddPrintJobTextInputDialog();
+                Optional<PrintJob> result = addJobDialog.showAndWait();
+
+                if(result.isPresent()){
+                    PrintJob newJob = result.get();
+                    queue.addPrintJob(newJob);
+                    queueListView.refresh();
+                    if(!directory.containsStudent(newJob.getStudent().getStudentID()))
+                        directory.putStudent(newJob.getStudent().getStudentID(), newJob.getStudent());
+                }
+            }
+        });
         commandPane.getChildren().add(addJobButton);
 
         root.setTop(topLabel);
@@ -75,18 +91,5 @@ public class PrinterQueueViewController extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public class QueueButtonEventHandler implements EventHandler<ActionEvent> {
-
-        @Override
-        public void handle(ActionEvent e) {
-            AddPrintJobTextInputDialog addJobDialog = new AddPrintJobTextInputDialog();
-            Optional<PrintJob> result = addJobDialog.showAndWait();
-            
-            if(result.isPresent()){
-                queue.addPrintJob(result.get());
-            }
-        }
     }
 }
