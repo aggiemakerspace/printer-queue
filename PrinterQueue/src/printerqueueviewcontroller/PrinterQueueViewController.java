@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package printerqueue;
+package printerqueueviewcontroller;
 
 import java.util.Optional;
 import javafx.application.Application;
