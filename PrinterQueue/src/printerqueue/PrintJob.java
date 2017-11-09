@@ -21,6 +21,7 @@ public class PrintJob {
     private String requestComments;
     private Student requestingStudent;
     private String printComments;
+    private PrintStatus status;
     
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
@@ -30,6 +31,7 @@ public class PrintJob {
     }
     
     public PrintJob(String stlPath, PrintType type, Date dueDate, Student student) {
+        this.status = PrintStatus.READY_TO_PRINT;
         this.stlPath = stlPath;
         this.type = type;
         this.requestingStudent = student;
@@ -98,6 +100,20 @@ public class PrintJob {
      */
     public void setPrintComments(String printComments) {
         this.printComments = printComments;
+    }
+
+    /**
+     * @return the status
+     */
+    public PrintStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(PrintStatus status) {
+        this.status = status;
     }
     
 }
