@@ -8,6 +8,8 @@ package printerqueue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -27,6 +29,8 @@ public class PrinterQueue {
     private final String queueConfigFileName = "queueConfig.txt";
     private final String waitingForPickupConfigFileName = "waitingForPickupConfig.txt";
     private final String completedConfigFileName = "completedConfig.txt";
+    
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
     public PrinterQueue() {
         queue = new ArrayList<PrintJob>();
@@ -167,17 +171,129 @@ public class PrinterQueue {
                 String[] studentLine = reader.nextLine().split(",");
                 
                 String requestComments = "";
-                boolean moreComments = true;
-                while(moreComments) {
+                boolean moreRequestComments = true;
+                while(moreRequestComments) {
                     String nextLine = reader.nextLine();
                     if(nextLine.trim().equals("BREAK"))
-                        moreComments = false;
+                        moreRequestComments = false;
                     else
                         requestComments += nextLine;
                 }
+                
+                String printComments = "";
+                boolean morePrintComments = true;
+                while(morePrintComments) {
+                    String nextLine = reader.nextLine();
+                    if(nextLine.trim().equals("END"))
+                        morePrintComments = false;
+                    else
+                        printComments += nextLine;
+                }
+                
+                Student requestingStudent = new Student(studentLine[0], studentLine[1], studentLine[2], studentLine[3], studentLine[4]);
+                
+                try {
+                    PrintJob newJob = new PrintJob(jobLine[0].trim(), PrintType.valueOf(jobLine[1].trim()), dateFormat.parse(jobLine[2].trim()), PrintStatus.valueOf(jobLine[3].trim()), requestComments, requestingStudent);
+                    newJob.setPrintComments(printComments);
+                    queue.add(newJob);
+                } catch (ParseException ex) {
+                    System.err.println("Unable to parse date " + jobLine[2] + " for print job. Job not added.");
+                    Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         } catch (FileNotFoundException ex) {
             System.err.println("Unable to open Printer Queue Config File for reading");
+            Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void loadWaitingForPickup() {
+        try {
+            Scanner reader = new Scanner(new File(queueConfigFileName));
+            while(reader.hasNext()){
+                String[] jobLine = reader.nextLine().split(",");
+                String[] studentLine = reader.nextLine().split(",");
+                
+                String requestComments = "";
+                boolean moreRequestComments = true;
+                while(moreRequestComments) {
+                    String nextLine = reader.nextLine();
+                    if(nextLine.trim().equals("BREAK"))
+                        moreRequestComments = false;
+                    else
+                        requestComments += nextLine;
+                }
+                
+                String printComments = "";
+                boolean morePrintComments = true;
+                while(morePrintComments) {
+                    String nextLine = reader.nextLine();
+                    if(nextLine.trim().equals("END"))
+                        morePrintComments = false;
+                    else
+                        printComments += nextLine;
+                }
+                
+                Student requestingStudent = new Student(studentLine[0], studentLine[1], studentLine[2], studentLine[3], studentLine[4]);
+                
+                try {
+                    PrintJob newJob = new PrintJob(jobLine[0].trim(), PrintType.valueOf(jobLine[1].trim()), dateFormat.parse(jobLine[2].trim()), PrintStatus.valueOf(jobLine[3].trim()), requestComments, requestingStudent);
+                    newJob.setPrintComments(printComments);
+                    waitingForPickup.add(newJob);
+                } catch (ParseException ex) {
+                    System.err.println("Unable to parse date " + jobLine[2] + " for print job. Job not added.");
+                    Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open Waiting for Pickup Config File for reading");
+            Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void loadCompleted() {
+        try {
+            Scanner reader = new Scanner(new File(queueConfigFileName));
+            while(reader.hasNext()){
+                String[] jobLine = reader.nextLine().split(",");
+                String[] studentLine = reader.nextLine().split(",");
+                
+                String requestComments = "";
+                boolean moreRequestComments = true;
+                while(moreRequestComments) {
+                    String nextLine = reader.nextLine();
+                    if(nextLine.trim().equals("BREAK"))
+                        moreRequestComments = false;
+                    else
+                        requestComments += nextLine;
+                }
+                
+                String printComments = "";
+                boolean morePrintComments = true;
+                while(morePrintComments) {
+                    String nextLine = reader.nextLine();
+                    if(nextLine.trim().equals("END"))
+                        morePrintComments = false;
+                    else
+                        printComments += nextLine;
+                }
+                
+                Student requestingStudent = new Student(studentLine[0], studentLine[1], studentLine[2], studentLine[3], studentLine[4]);
+                
+                try {
+                    PrintJob newJob = new PrintJob(jobLine[0].trim(), PrintType.valueOf(jobLine[1].trim()), dateFormat.parse(jobLine[2].trim()), PrintStatus.valueOf(jobLine[3].trim()), requestComments, requestingStudent);
+                    newJob.setPrintComments(printComments);
+                    completed.add(newJob);
+                } catch (ParseException ex) {
+                    System.err.println("Unable to parse date " + jobLine[2] + " for print job. Job not added.");
+                    Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("Unable to open Completed Config File for reading");
             Logger.getLogger(PrinterQueue.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

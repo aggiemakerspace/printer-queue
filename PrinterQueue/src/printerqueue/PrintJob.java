@@ -25,13 +25,13 @@ public class PrintJob {
     
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
-    public PrintJob(String stlPath, PrintType type, Date dueDate, String comments, Student student) {
-        this(stlPath, type, dueDate, student);
+    public PrintJob(String stlPath, PrintType type, Date dueDate, PrintStatus status, String comments, Student student) {
+        this(stlPath, type, dueDate, status, student);
         this.requestComments = comments;
     }
     
-    public PrintJob(String stlPath, PrintType type, Date dueDate, Student student) {
-        this.status = PrintStatus.READY_TO_PRINT;
+    public PrintJob(String stlPath, PrintType type, Date dueDate, PrintStatus status, Student student) {
+        this.status = status;
         this.stlPath = stlPath;
         this.type = type;
         this.requestingStudent = student;

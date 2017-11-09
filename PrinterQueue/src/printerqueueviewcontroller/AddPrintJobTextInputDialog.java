@@ -27,6 +27,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javax.xml.transform.Result;
 import printerqueue.PrintJob;
+import printerqueue.PrintStatus;
 import printerqueue.PrintType;
 import printerqueue.Student;
 
@@ -120,7 +121,7 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
                 Instant instant = Instant.from(dueDatePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
                 Date date = Date.from(instant);
 
-                PrintJob newJob = new PrintJob(stlPathTextField.getText(), type, date, commentsTextArea.getText(), new Student("Test", "Test", "Test", "Test", "Test"));
+                PrintJob newJob = new PrintJob(stlPathTextField.getText(), type, date, PrintStatus.READY_TO_PRINT, commentsTextArea.getText(), new Student("Test", "Test", "Test", "Test", "Test"));
                 return newJob;
             }
             return null;
