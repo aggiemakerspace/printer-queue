@@ -116,4 +116,10 @@ public class PrintJob {
         this.status = status;
     }
     
+    public String toString() {
+        String returnString = String.format("%s, %s, %s" + System.lineSeparator() + "%s" + System.lineSeparator() + "%s" + System.lineSeparator() + "BREAK" + System.lineSeparator() + "%s" + System.lineSeparator() + "END", stlPath, type.name(), dateFormat.format(dueDate), requestingStudent.toString(), requestComments, printComments);
+        
+        return returnString;
+    }
+    
 }
