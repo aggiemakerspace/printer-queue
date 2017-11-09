@@ -8133,24 +8133,6 @@
 										},
 										{
 											"_type": "UMLParameter",
-											"_id": "AAAAAAFfiDX5YrTcQSY=",
-											"_parent": {
-												"$ref": "AAAAAAFfiDULYrC1v10="
-											},
-											"name": "requestingStudent",
-											"visibility": "public",
-											"isStatic": false,
-											"isLeaf": false,
-											"type": {
-												"$ref": "AAAAAAFfiAQ5SUeiVrc="
-											},
-											"isReadOnly": false,
-											"isOrdered": false,
-											"isUnique": false,
-											"direction": "in"
-										},
-										{
-											"_type": "UMLParameter",
 											"_id": "AAAAAAFfoPW4O8YnW7k=",
 											"_parent": {
 												"$ref": "AAAAAAFfiDULYrC1v10="
@@ -8161,6 +8143,24 @@
 											"isLeaf": false,
 											"type": {
 												"$ref": "AAAAAAFfnF7JM+tGBN8="
+											},
+											"isReadOnly": false,
+											"isOrdered": false,
+											"isUnique": false,
+											"direction": "in"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAFfiDX5YrTcQSY=",
+											"_parent": {
+												"$ref": "AAAAAAFfiDULYrC1v10="
+											},
+											"name": "requestingStudent",
+											"visibility": "public",
+											"isStatic": false,
+											"isLeaf": false,
+											"type": {
+												"$ref": "AAAAAAFfiAQ5SUeiVrc="
 											},
 											"isReadOnly": false,
 											"isOrdered": false,
@@ -14136,7 +14136,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+PrintJob(stlPath: String, type: PrintType, dueDate: Date, requestingStudent: Student, status: PrintStatus)",
+											"text": "+PrintJob(stlPath: String, type: PrintType, dueDate: Date, status: PrintStatus, requestingStudent: Student)",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
