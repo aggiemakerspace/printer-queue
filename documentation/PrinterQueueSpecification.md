@@ -222,7 +222,7 @@ Name | UI Element | Description
 stlPathLabel  | Label | self-explanatory
 stlPathTextField  | TextField | self-explanatory
 statusLabel  | Label | self-explanatory
-statusTextField  | TextField | self-explanatory
+statusComboBox  | ComboBox | self-explanatory
 typeLabel  | Label | self-explanatory
 typeTextField  | TextField | self-explanatory
 dueDateLabel  | Label | self-explanatory
