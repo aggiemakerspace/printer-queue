@@ -41,7 +41,13 @@ import printerqueue.StudentDirectory;
 public class PrinterQueueViewController extends Application {
     private PrinterQueue queue;
     private StudentDirectory directory;
+    private ListView queueListView;
+    private ListView waitingForPickupListView;
     
+    /**
+     * 
+     * @param primaryStage The stage you will display
+     */
     @Override
     public void start(Stage primaryStage) {
         queue = new PrinterQueue();
@@ -53,9 +59,27 @@ public class PrinterQueueViewController extends Application {
         HBox contentPane = new HBox();
         VBox commandPane = new VBox();
 
-        ListView queueListView = new ListView();
-        queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
-        contentPane.getChildren().add(queueListView);
+        VBox queuePane = new VBox();
+        queueListView = new ListView();
+        Label queueLabel = new Label("Print Queue");
+        Button viewQueuePrintButton = new Button("View Print Job");
+        viewQueuePrintButton.setPrefWidth(500);
+        queuePane.getChildren().add(queueLabel);
+        queuePane.getChildren().add(queueListView);
+        queuePane.getChildren().add(viewQueuePrintButton);
+        
+        VBox waitingForPickupPane = new VBox();
+        waitingForPickupListView = new ListView();
+        Label waitingForPickupLabel = new Label("Waiting for Pickup");
+        Button viewWaitingForPickupPrintButton = new Button("View Finished Job");
+        viewWaitingForPickupPrintButton.setPrefWidth(500);
+        waitingForPickupPane.getChildren().add(waitingForPickupLabel);
+        waitingForPickupPane.getChildren().add(waitingForPickupListView);
+        waitingForPickupPane.getChildren().add(viewWaitingForPickupPrintButton);
+        
+        refreshListViews();
+        contentPane.getChildren().add(queuePane);
+        contentPane.getChildren().add(waitingForPickupPane);
 
         Button addJobButton = new Button("Add Print Job");
         addJobButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -67,23 +91,30 @@ public class PrinterQueueViewController extends Application {
                 if(result.isPresent()){
                     PrintJob newJob = result.get();
                     queue.addPrintJob(newJob);
-                    queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
+                    refreshListViews();
                     if(!directory.containsStudent(newJob.getStudent().getStudentID()))
                         directory.putStudent(newJob.getStudent().getStudentID(), newJob.getStudent());
                 }
             }
         });
         commandPane.getChildren().add(addJobButton);
+        
+        
 
         root.setTop(topLabel);
         root.setCenter(contentPane);
         root.setLeft(commandPane);
 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 800, 500);
 
         primaryStage.setTitle("Aggie Makerspace Print Queue");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    
+    private void refreshListViews(){
+        queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
+        waitingForPickupListView.setItems(FXCollections.observableArrayList(queue.getWaitingForPickupQueue()));
     }
 
     /**
