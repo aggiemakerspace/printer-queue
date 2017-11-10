@@ -67,7 +67,7 @@ public class PrinterQueueViewController extends Application {
                 if(result.isPresent()){
                     PrintJob newJob = result.get();
                     queue.addPrintJob(newJob);
-                    queueListView.refresh();
+                    queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
                     if(!directory.containsStudent(newJob.getStudent().getStudentID()))
                         directory.putStudent(newJob.getStudent().getStudentID(), newJob.getStudent());
                 }
