@@ -31,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import printerqueue.PrintJob;
+import printerqueue.PrintStatus;
 import printerqueue.PrinterQueue;
 import printerqueue.StudentDirectory;
 
@@ -110,6 +111,7 @@ public class PrinterQueueViewController extends Application {
             public void handle(ActionEvent event) {
                 queue.setLastPrintJobMoved((PrintJob) queueListView.getSelectionModel().getSelectedItem());
                 queue.addPrintJobWaitingForPickup(queue.removePrintJob(queueListView.getSelectionModel().getSelectedIndex()));
+                queue.getPrintJobWaitingForPickup(queue.getNumPrintJobsWaitingForPickup() - 1).setStatus(PrintStatus.READY_FOR_PICKUP);
                 refreshListViews();
             }
             
@@ -122,6 +124,7 @@ public class PrinterQueueViewController extends Application {
             public void handle(ActionEvent event) {
                 queue.setLastPrintJobMoved((PrintJob) waitingForPickupListView.getSelectionModel().getSelectedItem());
                 queue.addCompletedPrintJob(queue.removePrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex()));
+                queue.getCompletedPrintJob(queue.getNumCompletedPrintJobs() - 1).setStatus(PrintStatus.COMPLETED);
                 refreshListViews();
             }
             
@@ -129,6 +132,13 @@ public class PrinterQueueViewController extends Application {
         commandPane.getChildren().add(pickedupButton);
         
         Button undoButton = new Button("Undo");
+        undoButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                undoMove();
+            }
+        
+        });
         commandPane.getChildren().add(undoButton);
         
         
@@ -147,6 +157,21 @@ public class PrinterQueueViewController extends Application {
     private void refreshListViews(){
         queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
         waitingForPickupListView.setItems(FXCollections.observableArrayList(queue.getWaitingForPickupQueue()));
+    }
+    
+    private void undoMove() {
+        PrintStatus undesiredState = queue.getLastPrintJobMoved().getStatus();
+        switch(undesiredState) {
+            case COMPLETED:
+                queue.addPrintJobWaitingForPickup(queue.removeCompletedPrintJob(queue.getNumCompletedPrintJobs() - 1));
+                queue.getPrintJobWaitingForPickup(queue.getNumPrintJobsWaitingForPickup() -1).setStatus(PrintStatus.READY_FOR_PICKUP);
+                break;
+            case READY_FOR_PICKUP:
+                queue.addPrintJob(queue.removePrintJobWaitingForPickup(queue.getNumPrintJobsWaitingForPickup() - 1));
+                queue.getPrintJob(queue.getNumPrintJobs() - 1).setStatus(PrintStatus.READY_TO_PRINT);
+                break;
+        }
+        this.refreshListViews();
     }
 
     /**
