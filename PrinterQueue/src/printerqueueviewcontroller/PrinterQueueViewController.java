@@ -79,7 +79,21 @@ public class PrinterQueueViewController extends Application {
                 viewPrint.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
                     public void handle(WindowEvent event) {
-                        queue.setPrintJob(queueListView.getSelectionModel().getSelectedIndex(), viewPrint.getPrintJob());
+                        System.out.println("CLOSING");
+                        PrintJob returnPrint = viewPrint.getPrintJob();
+                        switch(returnPrint.getStatus()) {
+                            case READY_TO_PRINT:
+                                queue.setPrintJob(queueListView.getSelectionModel().getSelectedIndex(), viewPrint.getPrintJob());
+                                break;
+                            case READY_FOR_PICKUP:
+                                queue.addPrintJobWaitingForPickup(queue.removePrintJob(queueListView.getSelectionModel().getSelectedIndex()));
+                                queue.setLastPrintJobMoved(queue.getPrintJobWaitingForPickup(queue.getNumPrintJobsWaitingForPickup() - 1));
+                                break;
+                            case COMPLETED:
+                                queue.addCompletedPrintJob(queue.removePrintJob(queueListView.getSelectionModel().getSelectedIndex()));
+                                queue.setLastPrintJobMoved(queue.getCompletedPrintJob(queue.getNumCompletedPrintJobs() - 1));
+                                break;
+                        }
                         refreshListViews();
                     }
                     
@@ -107,7 +121,21 @@ public class PrinterQueueViewController extends Application {
                 viewPrint.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
                     public void handle(WindowEvent event) {
-                        queue.setPrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex(), viewPrint.getPrintJob());
+                        System.out.println("CLOSING");
+                        PrintJob returnJob = viewPrint.getPrintJob();
+                        switch(returnJob.getStatus()) {
+                            case READY_TO_PRINT:
+                                queue.addPrintJob(queue.removePrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex()));
+                                queue.setLastPrintJobMoved(queue.getPrintJob(queue.getNumPrintJobs() - 1));
+                                break;
+                            case READY_FOR_PICKUP:
+                                queue.setPrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex(), viewPrint.getPrintJob());
+                                break;
+                            case COMPLETED:
+                                queue.addCompletedPrintJob(queue.removePrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex()));
+                                queue.setLastPrintJobMoved(queue.getCompletedPrintJob(queue.getNumCompletedPrintJobs() - 1));
+                                break;
+                        }
                         refreshListViews();
                     }
                     

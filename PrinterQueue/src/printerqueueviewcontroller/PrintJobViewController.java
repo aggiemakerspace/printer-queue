@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import printerqueue.PrintJob;
@@ -91,7 +92,14 @@ public class PrintJobViewController extends Stage {
             
         });
         
-        Button transitionButton = new Button("Ready for Pickup");
+        Button savePrintStatusButton = new Button("Save Print Status");
+        savePrintStatusButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                printJob.setStatus(PrintStatus.valueOf((String)statusComboBox.getSelectionModel().getSelectedItem()));
+            }
+            
+        });
         Button closeButton = new Button("Close");
         closeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -122,8 +130,9 @@ public class PrintJobViewController extends Stage {
         root.add(printCommentsLabel, 0, 8);
         root.add(printCommentsTextArea, 1, 8);
         
-        root.add(savePrintCommentsButton, 1, 9);
-        root.add(transitionButton, 2, 9);
+        HBox saveButtons = new HBox();
+        saveButtons.getChildren().addAll(savePrintCommentsButton, savePrintStatusButton);
+        root.add(saveButtons, 1, 9);
         root.add(closeButton, 3, 9);
         
         Scene scene = new Scene(root);
