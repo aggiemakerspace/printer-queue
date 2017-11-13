@@ -72,6 +72,10 @@ public class PrintJob implements Comparable<PrintJob>{
         return requestComments;
     }
     
+    public void setComments(String comments){
+        requestComments = comments;
+    }
+    
     /**
      * @return the Student who requested this print
      */

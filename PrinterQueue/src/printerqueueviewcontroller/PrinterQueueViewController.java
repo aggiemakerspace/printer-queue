@@ -29,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 import printerqueue.PrintJob;
 import printerqueue.PrintStatus;
@@ -67,6 +68,25 @@ public class PrinterQueueViewController extends Application {
         queueListView = new ListView();
         Label queueLabel = new Label("Print Queue");
         Button viewQueuePrintButton = new Button("View Print Job");
+        viewQueuePrintButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PrintJobViewController viewPrint = new PrintJobViewController();
+                viewPrint.setPrintJob((PrintJob) queueListView.getSelectionModel().getSelectedItem());
+                
+                viewPrint.setTitle("View Print Job");
+                viewPrint.show();
+                viewPrint.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        queue.setPrintJob(queueListView.getSelectionModel().getSelectedIndex(), viewPrint.getPrintJob());
+                        refreshListViews();
+                    }
+                    
+                });
+            }
+            
+        });
         viewQueuePrintButton.setPrefWidth(500);
         queuePane.getChildren().add(queueLabel);
         queuePane.getChildren().add(queueListView);
@@ -76,6 +96,24 @@ public class PrinterQueueViewController extends Application {
         waitingForPickupListView = new ListView();
         Label waitingForPickupLabel = new Label("Waiting for Pickup");
         Button viewWaitingForPickupPrintButton = new Button("View Finished Job");
+        viewWaitingForPickupPrintButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PrintJobViewController viewPrint = new PrintJobViewController();
+                viewPrint.setPrintJob((PrintJob) waitingForPickupListView.getSelectionModel().getSelectedItem());
+                
+                viewPrint.setTitle("View Print Job");
+                viewPrint.show();
+                viewPrint.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        queue.setPrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex(), viewPrint.getPrintJob());
+                        refreshListViews();
+                    }
+                    
+                });
+            }
+        });
         viewWaitingForPickupPrintButton.setPrefWidth(500);
         waitingForPickupPane.getChildren().add(waitingForPickupLabel);
         waitingForPickupPane.getChildren().add(waitingForPickupListView);
