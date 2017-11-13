@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class StudentDirectory {
     private HashMap<String, Student> directory;
-    private final String configFileName = "studentDirectoryConfigFile";
+    private final String configFileName = "studentDirectoryConfigFile.txt";
     
     public StudentDirectory() {
         directory = new HashMap();
