@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -30,6 +31,7 @@ import printerqueue.PrintJob;
 import printerqueue.PrintStatus;
 import printerqueue.PrintType;
 import printerqueue.Student;
+import printerqueue.StudentDirectory;
 
 /**
  *
@@ -45,6 +47,8 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
     //Add constructor
     //See https://stackoverflow.com/questions/31230228/get-multiple-results-from-custom-dialog-javafx
     public AddPrintJobTextInputDialog() {
+        StudentDirectory directory = new StudentDirectory();
+        directory.loadStudentDirectory();
         this.dueDate = new Date();
 
         setTitle("Add Print Job");
@@ -72,6 +76,7 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
             }
         });
         ComboBox studentComboBox = new ComboBox();
+        studentComboBox.setItems(FXCollections.observableList(new ArrayList<Student>(directory.getStudents())));
         TextArea commentsTextArea = new TextArea();
 
         Button stlPathBrowseButton = new Button("Browse");

@@ -52,6 +52,7 @@ public class PrinterQueueViewController extends Application {
     public void start(Stage primaryStage) {
         queue = new PrinterQueue();
         directory = new StudentDirectory();
+        directory.loadStudentDirectory();
         
         BorderPane root = new BorderPane();
 
@@ -94,10 +95,17 @@ public class PrinterQueueViewController extends Application {
                     refreshListViews();
                     if(!directory.containsStudent(newJob.getStudent().getStudentID()))
                         directory.putStudent(newJob.getStudent().getStudentID(), newJob.getStudent());
+                    
+                    queue.savePrinterQueue();
                 }
             }
         });
         commandPane.getChildren().add(addJobButton);
+        
+        Button transitionJobButton = new Button("Advance Job");
+        
+        
+        Button undoButton = new Button("Undo");
         
         
 
