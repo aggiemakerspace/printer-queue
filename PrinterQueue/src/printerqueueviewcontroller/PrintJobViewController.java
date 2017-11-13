@@ -55,7 +55,7 @@ public class PrintJobViewController extends Stage {
         Label statusLabel = new Label("Print Status");
         statusComboBox = new ComboBox();
         ArrayList<String> values = new ArrayList();
-        for(PrintType type : PrintType.values()){
+        for(PrintStatus type : PrintStatus.values()){
             values.add(type.name());
         }
         statusComboBox.setItems(FXCollections.observableList(values));
