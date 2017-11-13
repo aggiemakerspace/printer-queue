@@ -108,7 +108,7 @@ public class PrintJob implements Comparable<PrintJob>{
     }
     
     public String toString() {
-        String returnString = String.format("%s, %s, %s" + System.lineSeparator() + "%s" + System.lineSeparator() + "%s" + System.lineSeparator() + "BREAK" + System.lineSeparator() + "%s" + System.lineSeparator() + "END", stlPath, type.name(), dateFormat.format(dueDate), requestingStudent.toString(), requestComments, printComments);
+        String returnString = String.format("%s, %s, %s, %s" + System.lineSeparator() + "%s" + System.lineSeparator() + "%s" + System.lineSeparator() + "BREAK" + System.lineSeparator() + "%s" + System.lineSeparator() + "END", stlPath, type.name(), dateFormat.format(dueDate), status.name(), requestingStudent.toString(), requestComments, printComments);
         
         return returnString;
     }

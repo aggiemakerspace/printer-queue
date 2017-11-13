@@ -218,7 +218,7 @@ public class PrinterQueue {
     
     public void loadWaitingForPickup() {
         try {
-            Scanner reader = new Scanner(new File(queueConfigFileName));
+            Scanner reader = new Scanner(new File(this.waitingForPickupConfigFileName));
             while(reader.hasNext()){
                 String[] jobLine = reader.nextLine().split(",");
                 String[] studentLine = reader.nextLine().split(",");
@@ -263,7 +263,7 @@ public class PrinterQueue {
     
     public void loadCompleted() {
         try {
-            Scanner reader = new Scanner(new File(queueConfigFileName));
+            Scanner reader = new Scanner(new File(this.completedConfigFileName));
             while(reader.hasNext()){
                 String[] jobLine = reader.nextLine().split(",");
                 String[] studentLine = reader.nextLine().split(",");

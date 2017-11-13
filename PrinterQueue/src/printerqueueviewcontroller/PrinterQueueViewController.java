@@ -51,6 +51,8 @@ public class PrinterQueueViewController extends Application {
     @Override
     public void start(Stage primaryStage) {
         queue = new PrinterQueue();
+        queue.loadPrinterQueue();
+        queue.loadWaitingForPickup();
         directory = new StudentDirectory();
         directory.loadStudentDirectory();
         
@@ -102,10 +104,32 @@ public class PrinterQueueViewController extends Application {
         });
         commandPane.getChildren().add(addJobButton);
         
-        Button transitionJobButton = new Button("Advance Job");
+        Button readyForPickupButton = new Button("Print Ready For Pickup");
+        readyForPickupButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                queue.setLastPrintJobMoved((PrintJob) queueListView.getSelectionModel().getSelectedItem());
+                queue.addPrintJobWaitingForPickup(queue.removePrintJob(queueListView.getSelectionModel().getSelectedIndex()));
+                refreshListViews();
+            }
+            
+        });
+        commandPane.getChildren().add(readyForPickupButton);
         
+        Button pickedupButton = new Button("Print Picked Up");
+        pickedupButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                queue.setLastPrintJobMoved((PrintJob) waitingForPickupListView.getSelectionModel().getSelectedItem());
+                queue.addCompletedPrintJob(queue.removePrintJobWaitingForPickup(waitingForPickupListView.getSelectionModel().getSelectedIndex()));
+                refreshListViews();
+            }
+            
+        });
+        commandPane.getChildren().add(pickedupButton);
         
         Button undoButton = new Button("Undo");
+        commandPane.getChildren().add(undoButton);
         
         
 
