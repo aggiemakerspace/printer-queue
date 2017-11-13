@@ -20,6 +20,6 @@ package printerqueue;
  *
  * @author CCannon
  */
-public enum PrintStatus {
-    READY_TO_PRINT, READY_FOR_PICKUP, COMPLETED;
+public class licenseText {
+    
 }
