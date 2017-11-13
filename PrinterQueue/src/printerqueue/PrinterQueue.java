@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -318,5 +319,9 @@ public class PrinterQueue {
      */
     public void setLastPrintJobMoved(PrintJob lastPrintJobMoved) {
         this.lastPrintJobMoved = lastPrintJobMoved;
+    }
+    
+    public void sortPrintQueue() {
+        Collections.sort(this.queue);
     }
 }

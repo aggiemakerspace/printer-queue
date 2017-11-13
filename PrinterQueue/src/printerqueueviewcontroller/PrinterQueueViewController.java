@@ -155,6 +155,7 @@ public class PrinterQueueViewController extends Application {
     }
     
     private void refreshListViews(){
+        queue.sortPrintQueue();
         queueListView.setItems(FXCollections.observableList(queue.getPrintQueue()));
         waitingForPickupListView.setItems(FXCollections.observableArrayList(queue.getWaitingForPickupQueue()));
     }
