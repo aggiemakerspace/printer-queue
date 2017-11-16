@@ -1,0 +1,6 @@
+/Users/CCannon/Desktop/thing.stl, ASSIGNMENT, 11/12/2017, READY_FOR_PICKUP
+Abby, Waddell, 123456789, 8468675309, agwaddel@aggies.ncat.edu
+Please use orange filament
+BREAK
+Did it in yellow cause do what I want -CC
+END
