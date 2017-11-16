@@ -1,6 +1,0 @@
-/Users/CCannon/Desktop/thing.stl, ASSIGNMENT, 11/14/2017, READY_TO_PRINT
-Chris, Cannon, 950336438, 7049955974, chris.c.cannon@gmail.com
-This is a complex print.
-BREAK
-I don't like it -cc
-END
