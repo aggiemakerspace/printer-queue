@@ -250,7 +250,7 @@ public class PrinterQueueViewController extends Application {
         boolean result = true;
         if(!appDirectory.exists()){
             try {
-                File printDirectory = new File(appDirectoryPath + "\\stls\\");
+                File printDirectory = new File(PrintJob.stlDirectoryPath);
                 File studentDirectoryConfigFile = new File(StudentDirectory.configFileName);
                 File queueConfigFile = new File(PrinterQueue.queueConfigFileName);
                 File waitingForPickupConfigFile = new File(PrinterQueue.waitingForPickupConfigFileName);

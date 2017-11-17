@@ -16,10 +16,18 @@
  */
 package printerqueue;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,6 +43,7 @@ public class PrintJob implements Comparable<PrintJob>{
     private PrintStatus status;
     
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    public static final String stlDirectoryPath = System.getenv("APPDATA") + "\\printerQueue\\stls";
     
     public PrintJob(String stlPath, PrintType type, Date dueDate, PrintStatus status, String comments, Student student) {
         this(stlPath, type, dueDate, status, student);
@@ -53,6 +62,16 @@ public class PrintJob implements Comparable<PrintJob>{
             default:
                 this.dueDate = dueDate;
         }
+        
+        String targetStlPath = stlDirectoryPath + "\\" + student.getLastName() + student.getFirstName() + dueDate.getTime() + ".stl";
+        try {
+            Files.move(Paths.get(stlPath), Paths.get(targetStlPath), StandardCopyOption.REPLACE_EXISTING);
+            stlPath = targetStlPath;
+        } catch (IOException ex) {
+            Logger.getLogger(PrintJob.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Unable to copy " + student.getFirstName() + " " + student.getLastName() + "'s file from " + stlPath);
+        }
+        
     }
     
     /**

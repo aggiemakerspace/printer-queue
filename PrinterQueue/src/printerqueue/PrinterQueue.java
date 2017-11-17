@@ -56,10 +56,12 @@ public class PrinterQueue {
     
     public void addPrintJob(PrintJob job) {
         queue.add(job);
+        this.savePrinterQueue();
     }
     
     public void setPrintJob(int index, PrintJob job) {
         queue.set(index, job);
+        this.savePrinterQueue();
     }
     
     public PrintJob getPrintJob(int index) {
@@ -67,7 +69,9 @@ public class PrinterQueue {
     }
     
     public PrintJob removePrintJob(int index) {
-        return queue.remove(index);
+        PrintJob deletedJob = queue.remove(index);
+        this.savePrinterQueue();
+        return deletedJob;
     }
     
     public ArrayList<PrintJob> getPrintQueue() {
@@ -80,10 +84,12 @@ public class PrinterQueue {
     
     public void addPrintJobWaitingForPickup(PrintJob job) {
         waitingForPickup.add(job);
+        this.saveWaitingForPickup();
     }
     
     public void setPrintJobWaitingForPickup(int index, PrintJob job) {
         waitingForPickup.set(index, job);
+        this.saveWaitingForPickup();
     }
     
     public PrintJob getPrintJobWaitingForPickup(int index) {
@@ -91,7 +97,9 @@ public class PrinterQueue {
     }
     
     public PrintJob removePrintJobWaitingForPickup(int index) {
-        return waitingForPickup.remove(index);
+        PrintJob removedJob = waitingForPickup.remove(index);
+        this.saveWaitingForPickup();
+        return removedJob;
     }
     
     public ArrayList<PrintJob> getWaitingForPickupQueue() {
@@ -104,10 +112,12 @@ public class PrinterQueue {
     
     public void addCompletedPrintJob(PrintJob job) {
         completed.add(job);
+        this.saveCompleted();
     }
     
     public void setCompletedPrintJob(int index, PrintJob job) {
         completed.set(index, job);
+        this.saveCompleted();
     }
     
     public PrintJob getCompletedPrintJob(int index) {
@@ -115,7 +125,9 @@ public class PrinterQueue {
     }
     
     public PrintJob removeCompletedPrintJob(int index) {
-        return completed.remove(index);
+        PrintJob deletedJob = completed.remove(index);
+        this.saveCompleted();
+        return deletedJob;
     }
     
     public String toString(){

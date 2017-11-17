@@ -77,6 +77,7 @@ public class StudentDirectory {
     
     public void putStudent(String studentID, Student student) {
         directory.put(studentID, student);
+        this.saveStudentDirectory();
     }
     
     public Collection<Student> getStudents() {
