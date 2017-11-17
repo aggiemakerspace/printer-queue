@@ -16,6 +16,7 @@
  */
 package printerqueueviewcontroller;
 
+import java.io.File;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -236,7 +237,12 @@ public class PrinterQueueViewController extends Application {
     
     private void initializeAppDirectory() {
         this.appDirectoryPath = System.getenv("APPDATA") + "\\printerQueue\\";
-        System.out.println(this.appDirectoryPath);
+        File appDirectory = new File(appDirectoryPath);
+        boolean result = false;
+        if(!appDirectory.exists())
+            result = appDirectory.mkdir();
+        if(!result)
+            System.err.println("Unable to create APPDATA\\printerQueue");
     }
     
     private void refreshListViews(){
