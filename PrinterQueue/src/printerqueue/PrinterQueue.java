@@ -38,9 +38,9 @@ public class PrinterQueue {
     
     private PrintJob lastPrintJobMoved;
     
-    private final String queueConfigFileName = System.getenv("APPDATA") + "\\printerQueue\\queueConfig.txt";
-    private final String waitingForPickupConfigFileName = System.getenv("APPDATA") + "\\printerQueue\\waitingForPickupConfig.txt";
-    private final String completedConfigFileName = System.getenv("APPDATA") + "\\printerQueue\\completedConfig.txt";
+    public static final String queueConfigFileName = System.getenv("APPDATA") + "\\printerQueue\\queueConfig.txt";
+    public static final String waitingForPickupConfigFileName = System.getenv("APPDATA") + "\\printerQueue\\waitingForPickupConfig.txt";
+    public static final String completedConfigFileName = System.getenv("APPDATA") + "\\printerQueue\\completedConfig.txt";
     
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     

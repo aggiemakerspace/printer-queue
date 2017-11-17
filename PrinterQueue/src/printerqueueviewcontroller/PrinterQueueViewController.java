@@ -17,7 +17,10 @@
 package printerqueueviewcontroller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -238,11 +241,31 @@ public class PrinterQueueViewController extends Application {
     private void initializeAppDirectory() {
         this.appDirectoryPath = System.getenv("APPDATA") + "\\printerQueue\\";
         File appDirectory = new File(appDirectoryPath);
+        
         boolean result = false;
-        if(!appDirectory.exists())
-            result = appDirectory.mkdir();
+        if(!appDirectory.exists()){
+            try {
+                File printDirectory = new File(appDirectoryPath + "\\stls\\");
+                File studentDirectoryConfigFile = new File(StudentDirectory.configFileName);
+                File queueConfigFile = new File(PrinterQueue.queueConfigFileName);
+                File waitingForPickupConfigFile = new File(PrinterQueue.waitingForPickupConfigFileName);
+                File completedConfigFile = new File(PrinterQueue.completedConfigFileName);
+                
+                if( appDirectory.mkdir() &&
+                        printDirectory.mkdir() &&
+                        studentDirectoryConfigFile.createNewFile() &&
+                        queueConfigFile.createNewFile() &&
+                        waitingForPickupConfigFile.createNewFile() &&
+                        completedConfigFile.createNewFile()) {
+                    result = true;
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PrinterQueueViewController.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Unable to initialize configuration files");
+            }
+        }
         if(!result)
-            System.err.println("Unable to create APPDATA\\printerQueue");
+            System.err.println("Initialize App Directory Failed");
     }
     
     private void refreshListViews(){
