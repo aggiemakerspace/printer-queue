@@ -247,7 +247,7 @@ public class PrinterQueueViewController extends Application {
         this.appDirectoryPath = System.getenv("APPDATA") + "\\printerQueue\\";
         File appDirectory = new File(appDirectoryPath);
         
-        boolean result = false;
+        boolean result = true;
         if(!appDirectory.exists()){
             try {
                 File printDirectory = new File(appDirectoryPath + "\\stls\\");
