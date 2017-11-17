@@ -56,6 +56,7 @@ public class PrinterQueueViewController extends Application {
     private StudentDirectory directory;
     private ListView queueListView;
     private ListView waitingForPickupListView;
+    private String appDirectoryPath; 
     
     /**
      * 
@@ -63,6 +64,8 @@ public class PrinterQueueViewController extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        initializeAppDirectory();
+        
         queue = new PrinterQueue();
         queue.loadPrinterQueue();
         queue.loadWaitingForPickup();
@@ -229,6 +232,11 @@ public class PrinterQueueViewController extends Application {
         primaryStage.setTitle("Aggie Makerspace Print Queue");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    
+    private void initializeAppDirectory() {
+        this.appDirectoryPath = System.getenv("APPDATA") + "\\printerQueue\\";
+        System.out.println(this.appDirectoryPath);
     }
     
     private void refreshListViews(){
