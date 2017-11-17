@@ -65,8 +65,8 @@ public class PrintJob implements Comparable<PrintJob>{
         
         String targetStlPath = stlDirectoryPath + "\\" + student.getLastName() + student.getFirstName() + dueDate.getTime() + ".stl";
         try {
-            Files.move(Paths.get(stlPath), Paths.get(targetStlPath), StandardCopyOption.REPLACE_EXISTING);
-            stlPath = targetStlPath;
+            Files.copy(Paths.get(stlPath), Paths.get(targetStlPath), StandardCopyOption.REPLACE_EXISTING);
+            this.stlPath = targetStlPath;
         } catch (IOException ex) {
             Logger.getLogger(PrintJob.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Unable to copy " + student.getFirstName() + " " + student.getLastName() + "'s file from " + stlPath);
