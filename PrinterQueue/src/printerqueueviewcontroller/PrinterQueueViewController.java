@@ -27,6 +27,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -79,8 +80,12 @@ public class PrinterQueueViewController extends Application {
         BorderPane root = new BorderPane();
 
         Label topLabel = new Label("3-D Printer Queue");
+        topLabel.setStyle("-fx-font-size: 48;");
+        topLabel.setAlignment(Pos.CENTER);
         HBox contentPane = new HBox();
         VBox commandPane = new VBox();
+        commandPane.setAlignment(Pos.CENTER);
+        commandPane.setSpacing(10.0);
 
         VBox queuePane = new VBox();
         queueListView = new ListView();
