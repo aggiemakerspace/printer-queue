@@ -26,6 +26,8 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -149,6 +151,15 @@ public class AddPrintJobTextInputDialog extends Dialog<PrintJob> {
                 Instant instant = Instant.from(dueDatePicker.getValue().atStartOfDay(ZoneId.systemDefault()));
                 Date date = Date.from(instant);
                 
+                if(stlPathTextField.getText().isEmpty() || studentComboBox.getSelectionModel().getSelectedItem() == null || dueDatePicker.getValue() == null) {
+                    Alert incompletePrintJobAlert = new Alert(AlertType.WARNING);
+                    incompletePrintJobAlert.setTitle("Error Adding Print Job");
+                    incompletePrintJobAlert.setHeaderText("All fields are required!");
+                    incompletePrintJobAlert.setContentText("Your print job will not be added, please try again.");
+                    incompletePrintJobAlert.showAndWait();
+                    
+                    return null;
+                }
                 
                 PrintJob newJob = new PrintJob(stlPathTextField.getText(), type, date, PrintStatus.READY_TO_PRINT, commentsTextArea.getText(), (Student) studentComboBox.getSelectionModel().getSelectedItem());
                 return newJob;
