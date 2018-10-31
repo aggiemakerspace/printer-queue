@@ -74,6 +74,7 @@ public class PrinterQueueViewController extends Application {
         queue = new PrinterQueue();
         queue.loadPrinterQueue();
         queue.loadWaitingForPickup();
+        queue.loadCompleted();
         directory = new StudentDirectory();
         directory.loadStudentDirectory();
         
@@ -229,6 +230,18 @@ public class PrinterQueueViewController extends Application {
         
         });
         commandPane.getChildren().add(undoButton);
+       
+        Button viewCompletedJobsButton = new Button("View Completed Jobs");
+        viewCompletedJobsButton.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                CompletedPrintJobViewController completedController = new  CompletedPrintJobViewController(queue);
+                completedController.show();
+            }
+            
+        
+        });
+        commandPane.getChildren().add(viewCompletedJobsButton);
         
         
 

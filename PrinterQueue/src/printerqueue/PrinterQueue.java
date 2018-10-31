@@ -123,6 +123,9 @@ public class PrinterQueue {
     public PrintJob getCompletedPrintJob(int index) {
         return completed.get(index);
     }
+    public ArrayList<PrintJob> getCompletedQueue(){
+    return completed;
+    }
     
     public PrintJob removeCompletedPrintJob(int index) {
         PrintJob deletedJob = completed.remove(index);
