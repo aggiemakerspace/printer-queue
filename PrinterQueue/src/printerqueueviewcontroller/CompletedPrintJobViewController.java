@@ -40,7 +40,13 @@ public class CompletedPrintJobViewController extends Stage{
         this.setTitle("View Completed Jobs");
         completedJobsListView = new ListView();
         completedJobsListView.setItems(FXCollections.observableArrayList(queue.getCompletedQueue()));
-        
+        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                close();
+            }
+            
+        });
         
         
         VBox CompletedJobsPane = new VBox();
