@@ -237,9 +237,15 @@ public class PrinterQueueViewController extends Application {
             public void handle(ActionEvent event) {
                 CompletedPrintJobViewController completedController = new  CompletedPrintJobViewController(queue);
                 completedController.show();
+                completedController.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                refreshListViews();
             }
             
-        
+        });
+            }
+            
         });
         commandPane.getChildren().add(viewCompletedJobsButton);
         

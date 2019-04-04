@@ -59,6 +59,13 @@ public class PrintJobViewController extends Stage {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
     public PrintJobViewController(){
+        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                close();
+            }
+            
+        });
         GridPane root = new GridPane();
         
         Label stlPathLabel = new Label(".stl File Path");
