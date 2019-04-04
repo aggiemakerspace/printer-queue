@@ -69,7 +69,7 @@ public class CompletedPrintJobViewController extends Stage{
                         PrintJob returnPrint = viewPrint.getPrintJob();
                         switch(returnPrint.getStatus()) {
                             case READY_TO_PRINT:
-                                queue.addPrintJob(viewPrint.getPrintJob());
+                                queue.addPrintJob(queue.removeCompletedPrintJob(completedJobsListView.getSelectionModel().getSelectedIndex()));
                                 break;
                             case READY_FOR_PICKUP:
                                 queue.addPrintJobWaitingForPickup(queue.removeCompletedPrintJob(completedJobsListView.getSelectionModel().getSelectedIndex()));
